@@ -6,6 +6,14 @@ $color3: #FEFEFE;
   display: flex;
   flex-direction: $direction;
 }
+@mixin hover2(){
+  &:hover{
+    color: $color1;
+    border: 2px solid $color3;
+    border-radius: 15px;
+    background-color: $color2;
+  }
+}
 
 *, *::before, *::after{
   box-sizing :border-box;
@@ -18,13 +26,43 @@ $color3: #FEFEFE;
 .flex-column{
   @include flex(column);
 }
-nav{
+aside{
   background-color: $color1;
   height: 100vh;
   width: 15vw;
+  @include flex(column);
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 30px;
+  ul {
+    @include flex(column);
+    row-gap: 90px;
+    li{
+      text-decoration: none;
+      padding: 4vh;
+      width: 100%;
+      @include hover2;
+      a{
+        text-decoration: none;
+        @include hover2;
+        color: $color3;
+      }
+    }
+  }
 }
 main{
   background-color: $color2;
-  height: 100vh;
+  height: 93vh;
   width: 85vw;
+}
+
+footer{
+  height: 7vh;
+  width: 85vw;
+}
+
+.logo{
+  height: 70%;
+  width: 50%;
 }
