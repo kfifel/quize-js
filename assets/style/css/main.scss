@@ -1,3 +1,30 @@
 $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
+
+@mixin flex($direction){
+  display: flex;
+  flex-direction: $direction;
+}
+
+*, *::before, *::after{
+  box-sizing :border-box;
+  margin: 0;
+  padding: 0;
+}
+.body-container{
+  @include flex(row);
+}
+.flex-column{
+  @include flex(column);
+}
+nav{
+  background-color: $color1;
+  height: 100vh;
+  width: 15vw;
+}
+main{
+  background-color: $color2;
+  height: 100vh;
+  width: 85vw;
+}
