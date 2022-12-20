@@ -1,5 +1,6 @@
 *, *::before, *::after {
   box-sizing: border-box;
+  font-family: Arial, monospace, monospace;
   margin: 0;
   padding: 0;
 }
@@ -20,52 +21,40 @@ aside {
   background-color: #F67196;
   height: 100vh;
   width: 15vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-items: center;
   text-align: center;
-  gap: 30px;
+  gap: 70px;
+}
+aside img {
+  margin: 2rem 0 4rem;
 }
 aside ul {
   display: flex;
   flex-direction: column;
-  row-gap: 90px;
+  row-gap: 50px;
+  align-items: center;
+  list-style: none;
 }
 aside ul li {
-  text-decoration: none;
-  padding: 4vh;
-  width: 100%;
+  padding: 3vh;
+  width: 80%;
+  border-radius: 15px;
+  background-color: rgba(65, 65, 178, 0.2);
 }
 aside ul li:hover {
-  color: #F67196;
-  border: 2px solid #FEFEFE;
-  border-radius: 15px;
+  color: #FEFEFE;
   background-color: #4141B2;
 }
 aside ul li a {
   text-decoration: none;
   color: #FEFEFE;
 }
-aside ul li a:hover {
-  color: #F67196;
-  border: 2px solid #FEFEFE;
-  border-radius: 15px;
-  background-color: #4141B2;
-}
 
 main {
-  background-color: #4141B2;
-  min-height: 93vh;
+  min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-}
-
-footer {
-  background-color: rgba(78, 52, 122, 0.71);
-  height: 7vh;
-  width: 83.7vw;
-  margin-left: 15vw;
+  background: url("../../../assets/images/background.jpg") no-repeat center;
+  background-size: 40vw 60vh;
 }
 
 .logo {
@@ -75,6 +64,56 @@ footer {
 
 .main-container {
   padding: 4%;
+}
+
+.container {
+  background-color: rgba(65, 65, 178, 0.1);
+  border-radius: 10px;
+  padding: 4vh;
+  width: 70%;
+  text-align: center;
+  font-weight: bold;
+}
+.container article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 10%;
+}
+.container article h1 {
+  font-weight: bolder;
+  font-size: xxx-large;
+  color: #4141B2;
+}
+.container section label {
+  font-weight: bold;
+  font-size: medium;
+  color: #4141B2;
+}
+.container section input {
+  margin-top: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: bold;
+  font-size: medium;
+  background-color: rgba(65, 65, 178, 0.2);
+  border-radius: 10px;
+  border: none;
+}
+.container section input:focus {
+  border: 1px solid #F67196;
+  background-color: rgba(246, 113, 150, 0.2);
+}
+.container section .start {
+  padding: 0.5rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(246, 113, 150, 0.5);
+}
+.container section .start:hover {
+  background-color: #F67196;
+  transition: 0.2s;
 }
 
 /*# sourceMappingURL=main.css.map */

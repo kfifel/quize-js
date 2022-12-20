@@ -9,15 +9,14 @@ $color4: rgba(78, 52, 122, 0.71);
 }
 @mixin hover2(){
   &:hover{
-    color: $color1;
-    border: 2px solid $color3;
-    border-radius: 15px;
+    color: $color3;
     background-color: $color2;
   }
 }
 
 *, *::before, *::after{
   box-sizing :border-box;
+  font-family: Arial , monospace, monospace;
   margin: 0;
   padding: 0;
 }
@@ -33,40 +32,37 @@ aside{
   background-color: $color1;
   height: 100vh;
   width: 15vw;
-  @include flex(column);
-  justify-content: center;
-  justify-items: center;
   text-align: center;
-  gap: 30px;
+  gap: 70px;
+  img{
+    margin: 2rem 0 4rem;
+  }
   ul {
     @include flex(column);
-    row-gap: 90px;
+    row-gap: 50px;
+    align-items: center;
+    list-style: none;
     li{
-      text-decoration: none;
-      padding: 4vh;
-      width: 100%;
+      padding: 3vh;
+      width: 80%;
+      border-radius: 15px;
+      background-color: rgba($color2, 20%);
       @include hover2;
       a{
         text-decoration: none;
-        @include hover2;
         color: $color3;
       }
     }
   }
 }
 main{
-  background-color: $color2;
-  min-height: 93vh;
+  min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
+  background: url("../../../assets/images/background.jpg") no-repeat center;
+  background-size: 40vw 60vh ;
 }
 
-footer{
-  background-color: $color4;
-  height: 7vh;
-  width: 83.7vw;
-  margin-left: 15vw;
-}
 
 .logo{
   height: 70%;
@@ -75,4 +71,55 @@ footer{
 
 .main-container{
   padding: 4%;
+}
+
+.container{
+  background-color: rgb($color2, 10%);
+  border-radius: 10px;
+  padding: 4vh;
+  width: 70%;
+  text-align: center;
+  font-weight: bold;
+  article{
+    @include flex(column);
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 10%;
+    h1{
+      font-weight: bolder;
+      font-size: xxx-large;
+      color: $color2;
+    }
+  }
+  section{
+    label{
+      font-weight: bold;
+      font-size: medium;
+      color: $color2;
+    }
+    input{
+      margin-top: 2rem;
+      padding: .5rem 1.5rem;
+      font-weight: bold;
+      font-size: medium;
+      background-color: rgb($color2, 20%);
+      border-radius: 10px;
+      border: none;
+      &:focus{
+        border: 1px solid $color1;
+        background-color: rgb($color1, 20%);
+      }
+    }
+    .start{
+      padding: .5rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 10px;
+      border: none;
+      background-color: rgb($color1, 50%);
+      &:hover{
+        background-color: $color1;
+        transition: .2s;
+      }
+    }
+  }
 }
