@@ -15,6 +15,8 @@
 }
 
 aside {
+  position: fixed;
+  left: 0;
   background-color: #F67196;
   height: 100vh;
   width: 15vw;
@@ -54,18 +56,25 @@ aside ul li a:hover {
 
 main {
   background-color: #4141B2;
-  height: 93vh;
-  width: 85vw;
+  min-height: 93vh;
+  width: 83.7vw;
+  margin-left: 15vw;
 }
 
 footer {
+  background-color: rgba(78, 52, 122, 0.71);
   height: 7vh;
-  width: 85vw;
+  width: 83.7vw;
+  margin-left: 15vw;
 }
 
 .logo {
   height: 70%;
   width: 50%;
+}
+
+.main-container {
+  padding: 4%;
 }
 
 /*# sourceMappingURL=main.css.map */

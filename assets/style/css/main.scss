@@ -1,6 +1,7 @@
 $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
+$color4: rgba(78, 52, 122, 0.71);
 
 @mixin flex($direction){
   display: flex;
@@ -27,6 +28,8 @@ $color3: #FEFEFE;
   @include flex(column);
 }
 aside{
+  position: fixed;
+  left: 0;
   background-color: $color1;
   height: 100vh;
   width: 15vw;
@@ -53,16 +56,23 @@ aside{
 }
 main{
   background-color: $color2;
-  height: 93vh;
-  width: 85vw;
+  min-height: 93vh;
+  width: 83.7vw;
+  margin-left: 15vw;
 }
 
 footer{
+  background-color: $color4;
   height: 7vh;
-  width: 85vw;
+  width: 83.7vw;
+  margin-left: 15vw;
 }
 
 .logo{
   height: 70%;
   width: 50%;
+}
+
+.main-container{
+  padding: 4%;
 }
