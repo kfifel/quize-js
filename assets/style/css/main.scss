@@ -59,7 +59,7 @@ main{
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat center bottom;
+  background: url("../../../assets/images/background.jpg") no-repeat right bottom;
   background-size: 40vw 60vh ;
 }
 
@@ -124,5 +124,13 @@ main{
         transition: .2s;
       }
     }
+    #alert{
+      color: red;
+      margin-top: 1.5rem;
+    }
   }
+}
+
+#counter-to-start{
+  font-size: 7rem;
 }

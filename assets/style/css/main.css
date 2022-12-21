@@ -53,7 +53,7 @@ main {
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat center bottom;
+  background: url("../../../assets/images/background.jpg") no-repeat right bottom;
   background-size: 40vw 60vh;
 }
 
@@ -118,6 +118,14 @@ main {
 .container section .start:hover {
   background-color: #F67196;
   transition: 0.2s;
+}
+.container section #alert {
+  color: red;
+  margin-top: 1.5rem;
+}
+
+#counter-to-start {
+  font-size: 7rem;
 }
 
 /*# sourceMappingURL=main.css.map */

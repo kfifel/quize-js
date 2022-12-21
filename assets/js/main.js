@@ -1,17 +1,24 @@
 let username = ""
-const answer = [1, 2, 3, 4, 5];
 
-for(var i = 0; i< 5; i++){
-    const index = Math.floor(Math.random() * answer.length);
-    const value = answer[index];
-    console.log( "index: " + index);
-    console.log(  value );
-    answer.splice(index, 1)
+if(window.location.href === "http://localhost:63342/quize-js/quiz.html"){
+    for (let i = 5; i >= 0; i--) {
+        setTimeout(() =>{
+            document.getElementById("counter-to-start").innerText = `${i}`
+            if(i===0){
+                document.getElementById("counter-to-start").innerText = `let's Go`
+                ajax();
+            }
+        }, (5 - i) * 1000);
+    }
 }
 
 function Start(){
-    alert('alo')
-    ajax()
+    username = document.getElementById("username").value;
+    if(username === ""){
+        document.getElementById('alert').innerText = "Please username is required";
+    }else{
+        window.location.href = "./quiz.html"
+    }
 }
 
 function ajax(){
@@ -27,5 +34,9 @@ function ajax(){
 }
 
 function getData(data){
-    console.log(data)
+    quizStart(data)
+}
+
+function quizStart(){
+
 }
