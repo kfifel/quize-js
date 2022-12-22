@@ -136,10 +136,12 @@ main {
   user-select: none;
 }
 .quiz-container .answer .answer-items {
-  height: 2rem;
   padding: 2rem;
   background-color: rgba(246, 113, 150, 0.3);
   border-radius: 10px;
+}
+.quiz-container .answer .answer-items input {
+  display: none;
 }
 .quiz-container .answer .active {
   background-color: rgba(246, 113, 150, 0.8);
