@@ -51,6 +51,7 @@ function getData(res){
 
 function nextQuestion() {
     console.log(data[index]);
+    let typeInput = data[index].answers.length > 1 ? "checkbox" : "radio"
     const container = document.querySelector(".container");
     let answerContainer = `
     <div class="quiz-container">
@@ -61,7 +62,7 @@ function nextQuestion() {
         answerContainer += `
             <label for="${i+1}" id="choice${i+1}" class="answer-items">
                 ${data[index].choices[i]}
-                <input type="checkbox" id="${i+1}" name="choice" value="${i+1}" onclick="saveAnswer('choice'+${i+1})">
+                <input type="${typeInput}" id="${i+1}" name="choice" value="${i+1}" onclick="saveAnswer('choice'+${i+1})">
             </label>
         `;
     }

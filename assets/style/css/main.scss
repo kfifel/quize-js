@@ -142,10 +142,12 @@ main{
     margin-top: 2rem;
     user-select: none;
     .answer-items{
-      height: 2rem;
       padding: 2rem;
       background-color: rgb($color1, 30%);
       border-radius: 10px;
+      input{
+        display: none;
+      }
     }
     .active{
        background-color: rgb($color1, 80%);

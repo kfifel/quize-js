@@ -6,44 +6,19 @@
   },
 
   {
-    "question": "Les fichiers PHP ont l’extension …. ?",
-    "choices" : [".html", ".xml", ".php", ".ph"],
-    "answers": [ 3 ]
+    "question": "Parmi les propositions suivantes, laquelle est / sont la meilleure façon de déclarer une méthode?",
+    "choices" : [
+                 "function myFunction() { instructions; }",
+                 "scope function myFunction() { instructions; }",
+                 "method myMethod() { instructions; }",
+                 "scope method myMethod() { instructions; }"
+                ],
+    "answers": [ 1, 2 ]
   },
   {
     "question": "Un script PHP devrait commencer par ___ ?",
     "choices" : ["&lt;php", "&lt;?", "&lt;?php", "php"],
     "answers": [ 3 ]
-  },
-  {
-    "question": "Quelle version de PHP a introduit Try/catch Exception?",
-    "choices" : ["PHP 4", "PHP 5", "PHP 5.3", "PHP 7.2"],
-    "answers" : [ 2 ]
-  },
-  {
-    "question": "Les espaces de noms ou « namespaces » sont disponibles depuis quelle version ?",
-    "choices" : ["PHP 4", "PHP 5", "PHP 5.3", "PHP 6"],
-    "answers" : [ 4 ]
-  },
-  {
-    "question": "Laquelle des portées suivantes n’est pas prise en charge en PHP?",
-    "choices" : ["static", "final", "public", "friendly"],
-    "answers" : [ 4 ]
-  },
-  {
-    "question": "Les variables membres d’une classe sont également appelées __________?",
-    "choices" : ["les attributs", "des propriétés", "des instances", "tous les réponses sont vrais"],
-    "answers" : [ 4 ]
-  },
-  {
-    "question": "Les méthodes sont également appelées des_______?",
-    "choices" : ["fonction membre", "instances", "objects", "constructeurs"],
-    "answers" : [ 1 ]
-  },
-  {
-    "question": " Quelle mot-clé empêche une méthode d’être redéfinie par une classe file?",
-    "choices" : ["abstract", "protected", "final", "static"],
-    "answers" : [ 3 ]
   },
   {
     "question": "Nous pouvons utiliser ___ pour commenter une seule ligne?",
