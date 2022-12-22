@@ -128,4 +128,37 @@ main {
   font-size: 7rem;
 }
 
+.quiz-container .answer {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2rem;
+  margin-top: 2rem;
+  user-select: none;
+}
+.quiz-container .answer .answer-items {
+  height: 2rem;
+  padding: 2rem;
+  background-color: rgba(246, 113, 150, 0.3);
+  border-radius: 10px;
+}
+.quiz-container .answer .active {
+  background-color: rgba(246, 113, 150, 0.8);
+}
+.quiz-container .answer .valid {
+  background-color: lawngreen;
+}
+.quiz-container .btn-next {
+  background-color: rgba(65, 65, 178, 0.5);
+  color: #FEFEFE;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: 3rem;
+  position: relative;
+  left: -40%;
+}
+.quiz-container .btn-next:hover {
+  background-color: #4141B2;
+}
+
 /*# sourceMappingURL=main.css.map */

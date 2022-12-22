@@ -134,3 +134,37 @@ main{
 #counter-to-start{
   font-size: 7rem;
 }
+.quiz-container{
+  .answer{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2rem;
+    margin-top: 2rem;
+    user-select: none;
+    .answer-items{
+      height: 2rem;
+      padding: 2rem;
+      background-color: rgb($color1, 30%);
+      border-radius: 10px;
+    }
+    .active{
+       background-color: rgb($color1, 80%);
+     }
+    .valid{
+      background-color: lawngreen;
+    }
+  }
+  .btn-next{
+    background-color: rgb($color2, 50%);
+    color: $color3;
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    border: none;
+    margin-top: 3rem;
+    position: relative;
+    left: -40%;
+    &:hover{
+      background-color: $color2;
+    }
+  }
+}
