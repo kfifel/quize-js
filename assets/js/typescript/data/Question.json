@@ -12,7 +12,7 @@
   },
   {
     "question": "Un script PHP devrait commencer par ___ ?",
-    "choices" : ["<php", "<?", "<?php", "php"],
+    "choices" : ["&lt;php", "&lt;?", "&lt;?php", "php"],
     "answers": [ 3 ]
   },
   {
