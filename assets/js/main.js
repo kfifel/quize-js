@@ -1,5 +1,4 @@
 const container = document.querySelector(".container")
-const counter_question = document.querySelector(".counter-question")
 let username;
 let index;
 let score;
@@ -86,7 +85,7 @@ function Start(){
         countDownToStart();
     }
 }
-//   ------------------------------------------------------------------------------------
+//   ------------------------------- Getting data -----------------------------------------------------
 
     let ajax = new XMLHttpRequest()
     let questions = [];
@@ -104,15 +103,26 @@ function Start(){
 
 //   ---------------------------------------------------------------------------------------
 
-
 function countDownTimeQuestion() {
-    let i = 30;
-    while (i){
-        setTimeout(()=>{
-            counter_question.innerText = `${i}`;
-        }, (30 - i) * 1000);
+
+    let counter_question = document.querySelector("#counter-question")
+    let i = 20;
+    const interval = setInterval(() => {
         i--;
-    }
+        counter_question.innerHTML = i;
+        if( i < 10){
+            counter_question.classList.add("text-white")
+            counter_question.parentElement.style.backgroundColor = "red";
+            document.querySelector(".timer-question box-icon").setAttribute("animation","tada");
+        }
+        if (i === 0) {
+            clearInterval(interval);
+            counter_question.innerHTML = 'kill';
+            nextQuestion();
+        }
+        document.querySelector(".btn-next")
+            .addEventListener("click", ()=> clearInterval(interval))
+    }, 1000);
 }
 
 function nextQuestion() {
@@ -121,7 +131,7 @@ function nextQuestion() {
         let typeInput = data[index].answers.length > 1 ? "checkbox" : "radio"
         let answerContainer = `
                 <div class="quiz-container">
-                    <h2>  
+                    <h2>
                         ${data[index].question}  
                         <div class="timer-question">
                             <box-icon name='timer' ></box-icon>

@@ -2,7 +2,7 @@ $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
 $color4: rgba(78, 52, 122, 0.71);
-
+$colors: [red, blue, white, black];
 @mixin flex($direction){
   display: flex;
   flex-direction: $direction;
@@ -13,12 +13,20 @@ $color4: rgba(78, 52, 122, 0.71);
     background-color: $color2;
   }
 }
-
+@each $color in $colors{
+  .text-#{$color}{
+    color : $color;
+  }
+  .bg-#{$color}{
+    background-color : rgba($color, 50%)!important;
+  }
+}
 *, *::before, *::after{
   box-sizing :border-box;
   font-family: Arial , monospace, monospace;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 .body-container{
   @include flex(row);
@@ -47,7 +55,6 @@ aside{
       width: 80%;
       border-radius: 15px;
       background-color: rgba($color2, 20%);
-      user-select: none;
       @include hover2;
       a{
         text-decoration: none;
@@ -60,7 +67,7 @@ main{
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat right bottom;
+  background: url("../../../assets/images/background.jpg") no-repeat fixed bottom right;
   background-size: 40vw 60vh ;
   .stepper-bar{
     @include flex(row);
@@ -171,7 +178,6 @@ main{
     grid-template-columns: auto auto;
     gap: 2rem;
     margin-top: 2rem;
-    user-select: none;
     .answer-items{
       padding: 2rem;
       background-color: rgb($color1, 30%);
@@ -193,7 +199,6 @@ main{
     padding: .5rem 2rem;
     border-radius: .5rem;
     border: none;
-    margin-top: 3rem;
     position: relative;
     left: -40%;
     &:hover{
@@ -201,13 +206,17 @@ main{
     }
   }
   #timer-question{
-    background-color: red;
+    color: $color2;
   }
 }
 
 table {
   border-collapse: collapse;
   font-family: Tahoma, Geneva, sans-serif;
+  & *{
+    font-weight: bold;
+    font-size: 1.7rem;
+  }
   td, th {
     padding: 15px;
   }
