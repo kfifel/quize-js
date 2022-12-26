@@ -39,6 +39,7 @@ aside ul li {
   width: 80%;
   border-radius: 15px;
   background-color: rgba(65, 65, 178, 0.2);
+  user-select: none;
 }
 aside ul li:hover {
   color: #FEFEFE;
@@ -56,6 +57,17 @@ main {
   background: url("../../../assets/images/background.jpg") no-repeat right bottom;
   background-size: 40vw 60vh;
 }
+main .stepper-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 20%;
+}
+main .stepper-bar .stepper-item {
+  background-color: rgba(246, 113, 150, 0.2);
+  border-radius: 4px;
+}
 
 .logo {
   height: 70%;
@@ -65,8 +77,9 @@ main {
 .main-container {
   padding: 4%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -76,7 +89,7 @@ main {
   width: 70%;
   text-align: center;
   font-weight: bold;
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 .container article {
   display: flex;
@@ -112,14 +125,20 @@ main {
   padding: 0.5rem 1.5rem;
   margin-top: 1rem;
   border-radius: 10px;
-  border: none;
+  border: 1px solid #4141B2;
+  color: #4141B2;
   background-color: rgba(246, 113, 150, 0.5);
 }
 .container section .start:hover {
   background-color: #F67196;
   transition: 0.2s;
 }
-.container section #alert {
+.container section #alert-danger {
+  color: red;
+  margin-top: 1.5rem;
+}
+
+.alert-danger {
   color: red;
   margin-top: 1.5rem;
 }
@@ -128,6 +147,22 @@ main {
   font-size: 7rem;
 }
 
+.quiz-container h2 {
+  position: relative;
+}
+.quiz-container h2 .timer-question {
+  background-color: #F67196;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  right: -7rem;
+  top: -1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .quiz-container .answer {
   display: grid;
   grid-template-columns: auto auto;
@@ -139,9 +174,6 @@ main {
   padding: 2rem;
   background-color: rgba(246, 113, 150, 0.3);
   border-radius: 10px;
-}
-.quiz-container .answer .answer-items input {
-  display: none;
 }
 .quiz-container .answer .active {
   background-color: rgba(246, 113, 150, 0.8);
@@ -161,6 +193,27 @@ main {
 }
 .quiz-container .btn-next:hover {
   background-color: #4141B2;
+}
+.quiz-container #timer-question {
+  background-color: red;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+table td, table th {
+  padding: 15px;
+}
+table thead tr th {
+  background-color: rgba(246, 113, 150, 0.8);
+  color: #FEFEFE;
+  font-weight: bold;
+  font-size: 13px;
+  border: 1px solid #F67196;
+}
+table tbody tr {
+  background-color: rgba(65, 65, 178, 0.8);
 }
 
 /*# sourceMappingURL=main.css.map */

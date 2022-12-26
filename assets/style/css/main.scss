@@ -47,6 +47,7 @@ aside{
       width: 80%;
       border-radius: 15px;
       background-color: rgba($color2, 20%);
+      user-select: none;
       @include hover2;
       a{
         text-decoration: none;
@@ -61,6 +62,16 @@ main{
   margin-left: 15vw;
   background: url("../../../assets/images/background.jpg") no-repeat right bottom;
   background-size: 40vw 60vh ;
+  .stepper-bar{
+    @include flex(row);
+    width: 100%;
+    justify-content: center;
+    gap: 20%;
+    .stepper-item{
+      background-color: rgba($color1, 20%);
+      border-radius: 4px;
+    }
+  }
 }
 
 
@@ -71,8 +82,9 @@ main{
 
 .main-container{
   padding: 4%;
-  @include flex(row);
+  @include flex(column);
   justify-content: center;
+  align-items: center;
 }
 
 .container{
@@ -82,7 +94,7 @@ main{
   width: 70%;
   text-align: center;
   font-weight: bold;
-  margin-top: 5rem;
+  margin-top: 4rem;
   article{
     @include flex(column);
     align-items: center;
@@ -117,24 +129,43 @@ main{
       padding: .5rem 1.5rem;
       margin-top: 1rem;
       border-radius: 10px;
-      border: none;
+      border: 1px solid $color2;
+      color: $color2;
       background-color: rgb($color1, 50%);
       &:hover{
         background-color: $color1;
         transition: .2s;
       }
     }
-    #alert{
+    #alert-danger{
       color: red;
       margin-top: 1.5rem;
     }
   }
 }
-
+.alert-danger{
+  color: red;
+  margin-top: 1.5rem;
+}
 #counter-to-start{
   font-size: 7rem;
 }
 .quiz-container{
+  h2{
+    position: relative;
+  .timer-question{
+    background-color: $color1;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    right: -7rem;
+    top: -1rem;
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+  }
+  }
   .answer{
     display: grid;
     grid-template-columns: auto auto;
@@ -146,7 +177,7 @@ main{
       background-color: rgb($color1, 30%);
       border-radius: 10px;
       input{
-        display: none;
+        //display: none;
       }
     }
     .active{
@@ -168,5 +199,26 @@ main{
     &:hover{
       background-color: $color2;
     }
+  }
+  #timer-question{
+    background-color: red;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Tahoma, Geneva, sans-serif;
+  td, th {
+    padding: 15px;
+  }
+  thead tr th{
+    background-color: rgb($color1, 80%);
+    color: $color3;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid $color1;
+  }
+  tbody tr {
+    background-color: rgb($color2, 80%);
   }
 }
