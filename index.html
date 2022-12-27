@@ -32,10 +32,13 @@
     <div class="">
         <main>
             <div class="main-container">
-                <div class="stepper-bar">
+                <div class="stepper-bar d-none">
                     <div class="stepper-item"><box-icon name='info-circle'></box-icon></div>
                     <div class="stepper-item"><box-icon name='question-mark'></box-icon></div>
                     <div class="stepper-item"><box-icon name='last-page'></box-icon></div>
+                </div>
+                <div class="progress">
+                    <span id="progress-counter">0%</span><div class="progress-bar"></div>
                 </div>
                 <div class="container">
                     <article>
@@ -49,8 +52,8 @@
                     </article>
                     <section>
                         <label for="username" class="">Put your UserName here to starts: <br></label>
-                        <input type="text" id="username" placeholder="username ...">
-                        <button  class="start" onclick="Start()">  Let's start  </button>
+                        <input type="text" id="username" placeholder="username"><br>
+                        <button class="start" onclick="Start()">  Let's start  </button>
                         <div id="alert-danger"></div>
                     </section>
                 </div>
