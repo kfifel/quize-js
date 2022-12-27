@@ -1,8 +1,11 @@
 const container = document.querySelector(".container")
 const progressBar = document.querySelector(".progress")
+const stepperBar = document.querySelector(".stepper-bar")
 const progressCounter = document.querySelector("#progress-counter")
-const stepperItem = document.querySelector(".stepper-item")
-const stepperLine = document.querySelector(".stepper-line")
+const stepperItem2  = document.querySelector("#stepper-item-2")
+const stepperItem3  = document.querySelector("#stepper-item-3")
+const stepperLine1 = document.querySelector("#stepper-line-1")
+const stepperLine2  = document.querySelector("#stepper-line-2")
 
 let username;
 let index;
@@ -11,6 +14,7 @@ let size_progress_bar = .0;
 function rankedComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
+    stepperBar.style.display = "none";
     let rankedData = new Map();
     for (let key of Object.keys(localStorage)) {
         let value = JSON.parse(localStorage.getItem(key));
@@ -48,6 +52,11 @@ function rankedComponent(){
 function dashboardComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
+    stepperItem2.classList.remove("bg-color1")
+    stepperLine1.classList.remove("bg-color1")
+    stepperItem3.classList.remove("bg-color1")
+    stepperLine2.classList.remove("bg-color1")
+    stepperBar.style.display = "flex";
     size_progress_bar = 0;
     document.querySelector(".progress-bar").style.width = "0";
     container.innerHTML = `
@@ -68,8 +77,7 @@ function dashboardComponent(){
 }
 function countDownToStart(){
     document.querySelector(".bg-color2")
-    quizStart();
-    /*for (let i = 5; i >= 0; i--) {
+    for (let i = 5; i >= 0; i--) {
         setTimeout(() =>{
             document.getElementById("counter-to-start").innerText = `${i}`
             if(i===0){
@@ -77,19 +85,19 @@ function countDownToStart(){
                 setTimeout(()=>quizStart(), 2000);
             }
         }, (5 - i) * 1000);
-    }*/
+    }
 }
 
 function Start(){
     progressBar.classList.remove("d-none")
     progressBar.classList.add("d-block")
-    stepperItem.classList.add("bg-color2")
-    stepperItem.classList.remove("bg-color1")
+    stepperItem2.classList.add("bg-color1")
+    stepperLine1.classList.add("bg-color1")
     index = 0;
     username = "";
     score = 0;
     username = document.getElementById("username").value;
-    if(username !== ""){
+    if(username === ""){
         document.getElementById('alert-danger').innerText = "Please username is required";
     }else{
         document.querySelector(".container").innerHTML = `
@@ -120,7 +128,7 @@ function Start(){
 
 function countDownTimeQuestion() {
         let counter_question = document.querySelector("#counter-question")
-        let i = 6;
+        let i = 20;
         const interval = setInterval(() => {
             try{
                 i--;
@@ -189,6 +197,8 @@ function nextQuestion() {
         index++;
         countDownTimeQuestion();
     }else{
+        stepperItem3.classList.add("bg-color1")
+        stepperLine2.classList.add("bg-color1")
         showResult();
     }
 }
@@ -204,7 +214,7 @@ function calcAnswer(answers){
     if(document.querySelectorAll("input:checked").length > 0){
         document.querySelector(".btn-next").disabled = true;
         size_progress_bar += 100/size;
-        for (let i = size_progress_bar - 100/size, j = 0; i <= size_progress_bar; i++, j++) {
+        for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
             setTimeout(function() {
                 progressCounter.innerText = `${i}%`
             }, 50 * j );
