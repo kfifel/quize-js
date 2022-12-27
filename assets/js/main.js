@@ -1,10 +1,13 @@
 const container = document.querySelector(".container")
 const progressBar = document.querySelector(".progress")
 const progressCounter = document.querySelector("#progress-counter")
+const stepperItem = document.querySelector(".stepper-item")
+const stepperLine = document.querySelector(".stepper-line")
+
 let username;
 let index;
 let score;
-let size_progress_bar = 0;
+let size_progress_bar = .0;
 function rankedComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
@@ -64,6 +67,7 @@ function dashboardComponent(){
     `;
 }
 function countDownToStart(){
+    document.querySelector(".bg-color2")
     quizStart();
     /*for (let i = 5; i >= 0; i--) {
         setTimeout(() =>{
@@ -79,6 +83,8 @@ function countDownToStart(){
 function Start(){
     progressBar.classList.remove("d-none")
     progressBar.classList.add("d-block")
+    stepperItem.classList.add("bg-color2")
+    stepperItem.classList.remove("bg-color1")
     index = 0;
     username = "";
     score = 0;
@@ -113,24 +119,39 @@ function Start(){
 //   ---------------------------------------------------------------------------------------
 
 function countDownTimeQuestion() {
-    /*let counter_question = document.querySelector("#counter-question")
-    let i = 20;
-    const interval = setInterval(() => {
-        i--;
-        counter_question.innerHTML = i;
-        if( i < 10){
-            counter_question.classList.add("text-white")
-            counter_question.parentElement.style.backgroundColor = "red";
-            document.querySelector(".timer-question box-icon").setAttribute("animation","tada");
-        }
-        if (i === 0) {
-            clearInterval(interval);
-            counter_question.innerHTML = 'kill';
-            nextQuestion();
-        }
-        document.querySelector(".btn-next")
-            .addEventListener("click", ()=> clearInterval(interval))
-    }, 1000);*/
+        let counter_question = document.querySelector("#counter-question")
+        let i = 6;
+        const interval = setInterval(() => {
+            try{
+                i--;
+                counter_question.innerHTML = i;
+                if( i < 10){
+                    counter_question.classList.add("text-white")
+                    counter_question.parentElement.style.backgroundColor = "red";
+                    document.querySelector(".timer-question box-icon").setAttribute("animation","tada");
+                }
+                if (i === 0) {
+                    clearInterval(interval);
+                    document.querySelector(".btn-next").setAttribute("disabled", "disabled");
+                    setTimeout(()=>{
+                        counter_question.innerHTML = '--';
+                        size_progress_bar += 100/size;
+                        for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
+                            setTimeout(function() {
+                                progressCounter.innerText = `${i}%`
+                            }, 50 * j );
+                        }
+                        setTimeout(()=>{nextQuestion();}, 1000)
+                    }, 1000)
+                }
+                document.querySelector(".btn-next")
+                    .addEventListener("click", ()=> clearInterval(interval))
+            }catch (e){
+                clearInterval(interval);
+            }
+
+        }, 1000);
+
 }
 
 function nextQuestion() {
@@ -183,13 +204,12 @@ function calcAnswer(answers){
     if(document.querySelectorAll("input:checked").length > 0){
         document.querySelector(".btn-next").disabled = true;
         size_progress_bar += 100/size;
-        document.querySelector(".progress-bar").style.width = `${size_progress_bar}%`;
-
-        for (let i = size_progress_bar - 100/size; i <= size_progress_bar; i++) {
+        for (let i = size_progress_bar - 100/size, j = 0; i <= size_progress_bar; i++, j++) {
             setTimeout(function() {
                 progressCounter.innerText = `${i}%`
-            }, 50 * i);
+            }, 50 * j );
         }
+        document.querySelector(".progress-bar").style.width = `${size_progress_bar}%`;
 
         if(answers.length === 1){
             let check = document.querySelector("input:checked");
