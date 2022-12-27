@@ -1,8 +1,13 @@
 const container = document.querySelector(".container")
+const progressBar = document.querySelector(".progress")
+const progressCounter = document.querySelector("#progress-counter")
 let username;
 let index;
 let score;
+let size_progress_bar = 0;
 function rankedComponent(){
+    progressBar.classList.add("d-none")
+    progressBar.classList.remove("d-block")
     let rankedData = new Map();
     for (let key of Object.keys(localStorage)) {
         let value = JSON.parse(localStorage.getItem(key));
@@ -12,7 +17,6 @@ function rankedComponent(){
     let content = `
                     <article>
                         <h1>Global Ranked</h1>
-                        <div class="ranked-users">
                             <table>
                             <thead>
                                 <tr>
@@ -32,7 +36,6 @@ function rankedComponent(){
                 }
     content +=`</tbody>
                              </table>
-                         </div>
                     </article>
     `;
 
@@ -40,6 +43,10 @@ function rankedComponent(){
     container.innerHTML = content;
 }
 function dashboardComponent(){
+    progressBar.classList.add("d-none")
+    progressBar.classList.remove("d-block")
+    size_progress_bar = 0;
+    document.querySelector(".progress-bar").style.width = "0";
     container.innerHTML = `
                     <article>
                         <h1>Welcome to quiz in PHP</h1>
@@ -70,6 +77,8 @@ function countDownToStart(){
 }
 
 function Start(){
+    progressBar.classList.remove("d-none")
+    progressBar.classList.add("d-block")
     index = 0;
     username = "";
     score = 0;
@@ -104,8 +113,7 @@ function Start(){
 //   ---------------------------------------------------------------------------------------
 
 function countDownTimeQuestion() {
-
-    let counter_question = document.querySelector("#counter-question")
+    /*let counter_question = document.querySelector("#counter-question")
     let i = 20;
     const interval = setInterval(() => {
         i--;
@@ -122,7 +130,7 @@ function countDownTimeQuestion() {
         }
         document.querySelector(".btn-next")
             .addEventListener("click", ()=> clearInterval(interval))
-    }, 1000);
+    }, 1000);*/
 }
 
 function nextQuestion() {
@@ -134,8 +142,8 @@ function nextQuestion() {
                     <h2>
                         ${data[index].question}  
                         <div class="timer-question">
-                            <box-icon name='timer' ></box-icon>
-                            <span id="counter-question">30</span>
+                            <box-icon name='timer'" ></box-icon>
+                            <span id="counter-question">20</span>
                         </div>
                     </h2>
                     <div class="answer">
@@ -164,8 +172,8 @@ function nextQuestion() {
     }
 }
 function showResult(){
-    container.innerHTML = `<h1> congratulation ${username} your Score is : ${score}%</h1>`
     localStorage.setItem(username,score);
+    container.innerHTML = `<h1> congratulation ${username} your Score is : ${score}%</h1>`
 }
 function quizStart(){
     nextQuestion()
@@ -174,6 +182,15 @@ function quizStart(){
 function calcAnswer(answers){
     if(document.querySelectorAll("input:checked").length > 0){
         document.querySelector(".btn-next").disabled = true;
+        size_progress_bar += 100/size;
+        document.querySelector(".progress-bar").style.width = `${size_progress_bar}%`;
+
+        for (let i = size_progress_bar - 100/size; i <= size_progress_bar; i++) {
+            setTimeout(function() {
+                progressCounter.innerText = `${i}%`
+            }, 50 * i);
+        }
+
         if(answers.length === 1){
             let check = document.querySelector("input:checked");
             if(answers[0] === parseInt(check.value)){
