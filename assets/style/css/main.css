@@ -1,8 +1,65 @@
+.bg-color1 {
+  background-color: rgba(246, 113, 150, 0.5);
+}
+
+.bg-color2 {
+  background-color: rgba(65, 65, 178, 0.5);
+}
+
+.bg-color3 {
+  background-color: rgba(254, 254, 254, 0.5);
+}
+
+.text-red {
+  color: red;
+}
+
+.bg-red {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+.text-blue {
+  color: blue;
+}
+
+.bg-blue {
+  background-color: rgba(0, 0, 255, 0.5) !important;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.text-black {
+  color: black;
+}
+
+.bg-black {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: Arial, monospace, monospace;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 .body-container {
@@ -53,8 +110,25 @@ main {
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat center;
+  background: url("../../../assets/images/background.jpg") no-repeat fixed bottom right;
   background-size: 40vw 60vh;
+}
+main .stepper-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+main .stepper-bar .stepper-item {
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: 1s;
+}
+main .stepper-bar .stepper-line {
+  height: 6px;
+  width: 15rem;
+  transition: 1s;
 }
 
 .logo {
@@ -64,6 +138,10 @@ main {
 
 .main-container {
   padding: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -73,6 +151,7 @@ main {
   width: 70%;
   text-align: center;
   font-weight: bold;
+  margin-top: 1.5rem;
 }
 .container article {
   display: flex;
@@ -108,12 +187,129 @@ main {
   padding: 0.5rem 1.5rem;
   margin-top: 1rem;
   border-radius: 10px;
-  border: none;
+  border: 1px solid #4141B2;
+  color: #4141B2;
   background-color: rgba(246, 113, 150, 0.5);
 }
 .container section .start:hover {
   background-color: #F67196;
   transition: 0.2s;
+}
+.container section #alert-danger {
+  color: red;
+  margin-top: 1.5rem;
+}
+
+.alert-danger {
+  color: red;
+  margin-top: 1.5rem;
+}
+
+#counter-to-start {
+  font-size: 7rem;
+}
+
+.quiz-container h2 {
+  position: relative;
+}
+.quiz-container h2 .timer-question {
+  background-color: #F67196;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  right: -7rem;
+  top: -1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.quiz-container .answer {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.quiz-container .answer .answer-items {
+  padding: 2rem;
+  background-color: rgba(246, 113, 150, 0.3);
+  border-radius: 10px;
+}
+.quiz-container .answer .active {
+  background-color: rgba(246, 113, 150, 0.8);
+}
+.quiz-container .answer .valid {
+  background-color: lawngreen;
+}
+.quiz-container .btn-next {
+  background-color: rgba(65, 65, 178, 0.5);
+  color: #FEFEFE;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  position: relative;
+  left: -40%;
+}
+.quiz-container .btn-next:hover {
+  background-color: #4141B2;
+}
+.quiz-container #timer-question {
+  color: #4141B2;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+table th, table td {
+  text-align: left;
+  padding: 16px;
+  font-size: 16px;
+}
+table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+table th {
+  background-color: #6c757d;
+  color: white;
+  font-weight: bold;
+}
+table td {
+  border-top: 1px solid #dee2e6;
+}
+
+.progress {
+  margin-top: 1.5rem;
+  position: relative;
+  background-color: #4141B2;
+  width: 70%;
+  height: 10px;
+  border-radius: 4px;
+}
+.progress #progress-counter {
+  position: absolute;
+  color: #4141B2;
+  font-weight: bold;
+  font-size: small;
+  z-index: 10;
+  left: -3rem;
+  top: -0.1rem;
+  transition: 1s;
+}
+.progress .progress-bar {
+  position: absolute;
+  width: 0;
+  background-color: #F67196;
+  height: 8px;
+  transition: 2s;
+  border-radius: 3px;
+  top: 1px;
+  left: 1px;
+  max-width: 99.75%;
 }
 
 /*# sourceMappingURL=main.css.map */

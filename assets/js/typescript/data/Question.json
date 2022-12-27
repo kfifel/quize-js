@@ -1,0 +1,62 @@
+[
+
+  {
+    "question": "Que signifie PHP?",
+    "choices" : [
+                 "Personal Home Page",
+                 "Hypertext Preprocessor",
+                 "Pretext Hypertext Processor",
+                 "Preprocessor Home Page"
+                ],
+    "answers": [ 0, 1 ]
+  },
+  {
+    "question": "Un script PHP devrait commencer par ___ ?",
+    "choices" : ["&lt;php", "&lt;?", "&lt;?php", "php"],
+    "answers": [ 2 ]
+  },
+  {
+    "question": "Nous pouvons utiliser ___ pour commenter une seule ligne?",
+    "choices" : ["/?", "#", "//", "/* */"],
+    "answers" : [ 2 ]
+  },
+  {
+    "question": " Lequel des éléments suivants doit être installé sur votre ordinateur pour exécuter des scripts PHP?",
+    "choices" : ["Adobe Dreamweaver", "PHP", "Apache", "IIS"],
+    "answers" : [ 1, 2, 3 ]
+  },
+  {
+    "question": " Quelle fonction est utilisée pour déterminer si la valeur d’une variable est TRUE ou FALSE?",
+    "choices" : ["boolean()", "is_boolean()", "is_bool", "bool()"],
+    "answers" : [ 2 ]
+  },
+  {
+    "question": "What is inheritance in PHP OOP?",
+    "choices": [
+      "A feature of object-oriented programming that allows a subclass to inherit properties and methods from a superclass",
+      "A way to create an object from a class",
+      "A way to define a class in PHP",
+      "A way to access properties and methods of a class from outside the class"    ],
+    "answers": [ 0 ]
+  },
+  {
+    "question": "How do you define a class in PHP?",
+    "choices": [
+      "Using the `define` function",
+      "Using the `class` keyword followed by the name of the class, and placing the class definition inside curly braces `{}`",
+      "Using the `new` operator followed by the name of the class",
+      "Using the `extends` keyword to inherit from another class"
+    ],
+    "answers": [ 1 ]
+  },
+  {
+    "question": "What is polymorphism in PHP OOP?",
+    "choices": [
+      "A way to create multiple copies of an object",
+      "A way to access properties and methods of a class from outside the class",
+      "A feature of object-oriented programming that allows a single interface to be used for multiple forms of an object",
+      "A way to define a class in PHP"
+    ],
+    "answers": [ 2 ]
+  }
+]

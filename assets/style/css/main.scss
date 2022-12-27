@@ -1,8 +1,16 @@
 $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
-$color4: rgba(78, 52, 122, 0.71);
+$colors: [red, blue, white, black];
+$displays: [none, block, inline];
 
+$my-colors: (#F67196, #4141B2, #FEFEFE);
+
+@for $i from 1 through length($my-colors) {
+  .bg-color#{$i} {
+    background-color: rgba(nth($my-colors, $i), 50%);
+  }
+}
 @mixin flex($direction){
   display: flex;
   flex-direction: $direction;
@@ -14,11 +22,25 @@ $color4: rgba(78, 52, 122, 0.71);
   }
 }
 
+@each $color in $colors{
+  .text-#{$color}{
+    color : $color;
+  }
+  .bg-#{$color}{
+    background-color : rgba($color, 50%)!important;
+  }
+}
+@each $display in $displays{
+  .d-#{$display}{
+    display: $display;
+  }
+}
 *, *::before, *::after{
   box-sizing :border-box;
   font-family: Arial , monospace, monospace;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 .body-container{
   @include flex(row);
@@ -59,8 +81,25 @@ main{
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat center;
+  background: url("../../../assets/images/background.jpg") no-repeat fixed bottom right;
   background-size: 40vw 60vh ;
+  .stepper-bar{
+    @include flex(row);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    .stepper-item{
+      border-radius: 50%;
+      padding: .5rem;
+      transition: 1s;
+    }
+    .stepper-line{
+      height: 6px;
+      width: 15rem;
+      transition: 1s;
+
+    }
+  }
 }
 
 
@@ -71,6 +110,9 @@ main{
 
 .main-container{
   padding: 4%;
+  @include flex(column);
+  justify-content: center;
+  align-items: center;
 }
 
 .container{
@@ -80,6 +122,7 @@ main{
   width: 70%;
   text-align: center;
   font-weight: bold;
+  margin-top: 1.5rem;
   article{
     @include flex(column);
     align-items: center;
@@ -114,12 +157,130 @@ main{
       padding: .5rem 1.5rem;
       margin-top: 1rem;
       border-radius: 10px;
-      border: none;
+      border: 1px solid $color2;
+      color: $color2;
       background-color: rgb($color1, 50%);
       &:hover{
         background-color: $color1;
         transition: .2s;
       }
     }
+    #alert-danger{
+      color: red;
+      margin-top: 1.5rem;
+    }
+  }
+}
+.alert-danger{
+  color: red;
+  margin-top: 1.5rem;
+}
+#counter-to-start{
+  font-size: 7rem;
+}
+.quiz-container{
+  h2{
+    position: relative;
+  .timer-question{
+    background-color: $color1;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    right: -7rem;
+    top: -1rem;
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+  }
+  }
+  .answer{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2rem;
+    margin-top: 2rem;
+    .answer-items{
+      padding: 2rem;
+      background-color: rgb($color1, 30%);
+      border-radius: 10px;
+      input{
+        //display: none;
+      }
+    }
+    .active{
+       background-color: rgb($color1, 80%);
+     }
+    .valid{
+      background-color: lawngreen;
+    }
+  }
+  .btn-next{
+    background-color: rgb($color2, 50%);
+    color: $color3;
+    padding: .5rem 2rem;
+    border-radius: .5rem;
+    border: none;
+    position: relative;
+    left: -40%;
+    &:hover{
+      background-color: $color2;
+    }
+  }
+  #timer-question{
+    color: $color2;
+  }
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  th, td {
+    text-align: left;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8f9fa
+  }
+  th {
+    background-color: #6c757d;
+    color: white;
+    font-weight: bold;
+  }
+  td {
+    border-top: 1px solid #dee2e6;
+  }
+}
+.progress{
+  margin-top: 1.5rem;
+  position: relative;
+  background-color: $color2;
+  width: 70%;
+  height: 10px;
+  border-radius: 4px;
+  #progress-counter{
+    position: absolute;
+    color: $color2;
+    font-weight: bold;
+    font-size: small;
+    z-index: 10;
+    left: -3rem;
+    top: -.1rem;
+    transition: 1s;
+  }
+  .progress-bar{
+  position: absolute;
+    width: 0;
+    background-color: $color1;
+    height: 8px;
+    transition: 2s;
+    border-radius: 3px;
+    top: 1px;
+    left: 1px;
+    max-width: 99.75%;
   }
 }

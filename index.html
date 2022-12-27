@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="./assets/images/logo-top.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/style/css/main.css">
     <title>Dashboard</title>
@@ -18,11 +19,11 @@
             </div>
             <div class="nav-header">
                 <ul>
-                    <li>
-                        <a href="#"><h3>Dashboard</h3></a>
+                    <li onclick="dashboardComponent()">
+                        <div><h3>Dashboard</h3></div>
                     </li>
-                    <li>
-                        <a href=""><h3>Ranked</h3></a>
+                    <li onclick="rankedComponent()">
+                        <div><h3>Ranked</h3></div>
                     </li>
                 </ul>
             </div>
@@ -31,9 +32,27 @@
     <div class="">
         <main>
             <div class="main-container">
+                <div class="stepper-bar d-none">
+                    <div class="stepper-item bg-color1" id="stepper-item-1">
+                        <box-icon name='info-circle' size='lg'></box-icon>
+                    </div>
+                    <div class="stepper-line" id="stepper-line-1"></div>
+                    <div class="stepper-item" id="stepper-item-2">
+                        <box-icon name='question-mark' size='lg'></box-icon>
+                    </div>
+                    <div class="stepper-line" id="stepper-line-2"></div>
+                    <div class="stepper-item" id="stepper-item-3">
+                        <box-icon name='last-page' size='lg'></box-icon>
+                    </div>
+                </div>
+                <div class="progress d-none">
+                    <span id="progress-counter">0%</span><div class="progress-bar"></div>
+                </div>
                 <div class="container">
                     <article>
-                        <h1>Welcome to quiz in PHP</h1>
+                        <h1>
+                            Welcome to quiz in PHP
+                        </h1>
                         <p>
                             this website well offer to you a quiz of POO in PHP <br>
                             Are you ready !!!
@@ -41,15 +60,16 @@
                     </article>
                     <section>
                         <label for="username" class="">Put your UserName here to starts: <br></label>
-                        <input type="text" id="username" placeholder="username ...">
-                        <button  class="start" onclick="Start()">  Let's start  </button>
+                        <input type="text" id="username" placeholder="username"><br>
+                        <button class="start" onclick="Start()">  Let's start  </button>
+                        <div id="alert-danger"></div>
                     </section>
                 </div>
             </div>
         </main>
     </div>
 </div>
-
-<script src="./assets/js/main.js"></script>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" ></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
