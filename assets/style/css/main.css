@@ -1,13 +1,49 @@
-.bg-color1 {
-  background-color: rgba(246, 113, 150, 0.5);
+.bg-color-1-25 {
+  background-color: rgba(246, 113, 150, 0.25) !important;
 }
 
-.bg-color2 {
-  background-color: rgba(65, 65, 178, 0.5);
+.bg-color-1-50 {
+  background-color: rgba(246, 113, 150, 0.5) !important;
 }
 
-.bg-color3 {
-  background-color: rgba(254, 254, 254, 0.5);
+.bg-color-1-75 {
+  background-color: rgba(246, 113, 150, 0.75) !important;
+}
+
+.bg-color-1-100 {
+  background-color: #f67196 !important;
+}
+
+.bg-color-2-25 {
+  background-color: rgba(65, 65, 178, 0.25) !important;
+}
+
+.bg-color-2-50 {
+  background-color: rgba(65, 65, 178, 0.5) !important;
+}
+
+.bg-color-2-75 {
+  background-color: rgba(65, 65, 178, 0.75) !important;
+}
+
+.bg-color-2-100 {
+  background-color: #4141b2 !important;
+}
+
+.bg-color-3-25 {
+  background-color: rgba(254, 254, 254, 0.25) !important;
+}
+
+.bg-color-3-50 {
+  background-color: rgba(254, 254, 254, 0.5) !important;
+}
+
+.bg-color-3-75 {
+  background-color: rgba(254, 254, 254, 0.75) !important;
+}
+
+.bg-color-3-100 {
+  background-color: #fefefe !important;
 }
 
 .text-red {
@@ -145,7 +181,6 @@ main .stepper-bar .stepper-line {
 }
 
 .container {
-  background-color: rgba(65, 65, 178, 0.1);
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
@@ -215,8 +250,8 @@ main .stepper-bar .stepper-line {
 .quiz-container h2 .timer-question {
   background-color: #F67196;
   border-radius: 50%;
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   position: absolute;
   right: -7rem;
   top: -1rem;
@@ -310,6 +345,10 @@ table td {
   top: 1px;
   left: 1px;
   max-width: 99.75%;
+}
+
+box-icon[name=info-circle] {
+  color: #ff0000;
 }
 
 /*# sourceMappingURL=main.css.map */

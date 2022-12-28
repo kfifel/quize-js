@@ -6,9 +6,11 @@ $displays: [none, block, inline];
 
 $my-colors: (#F67196, #4141B2, #FEFEFE);
 
-@for $i from 1 through length($my-colors) {
-  .bg-color#{$i} {
-    background-color: rgba(nth($my-colors, $i), 50%);
+@for $i from 1 through length($my-colors){
+  @for $j from 1 through 4{
+    .bg-color-#{$i}-#{$j*25} {
+      background-color: rgba(nth($my-colors, $i), $j*25%)!important;
+    }
   }
 }
 @mixin flex($direction){
@@ -116,7 +118,7 @@ main{
 }
 
 .container{
-  background-color: rgb($color2, 10%);
+  //background-color: rgb($color2, 10%);
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
@@ -184,8 +186,8 @@ main{
   .timer-question{
     background-color: $color1;
     border-radius: 50%;
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     position: absolute;
     right: -7rem;
     top: -1rem;
@@ -283,4 +285,7 @@ table {
     left: 1px;
     max-width: 99.75%;
   }
+}
+box-icon[name='info-circle'] {
+  color: #ff0000;
 }
