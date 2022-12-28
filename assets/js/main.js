@@ -34,6 +34,8 @@ function rankedComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
     stepperBar.style.display = "none";
+    container.classList.add("bg-color-1-25");
+    container.classList.remove("bg-color-1-75");
     let localStorageData = new Map();
     for (let key of Object.keys(localStorage)) {
         let value = JSON.parse(localStorage.getItem(key));
@@ -86,11 +88,13 @@ function rankedComponent(){
 function dashboardComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
-    stepperItem2.classList.remove("bg-color1")
-    stepperLine1.classList.remove("bg-color1")
-    stepperItem3.classList.remove("bg-color1")
-    stepperLine2.classList.remove("bg-color1")
+    stepperItem2.classList.remove("bg-color-1-50")
+    stepperLine1.classList.remove("bg-color-1-50")
+    stepperItem3.classList.remove("bg-color-1-50")
+    stepperLine2.classList.remove("bg-color-1-50")
     stepperBar.style.display = "flex";
+    container.classList.remove("bg-color-1-25");
+    container.classList.add("bg-color-1-75");
     size_progress_bar = 0;
     document.querySelector(".progress-bar").style.width = "0";
     container.innerHTML = `
@@ -103,8 +107,8 @@ function dashboardComponent(){
                     </article>
                     <section>
                         <label for="username" class="">Put your UserName here to starts: <br></label>
-                        <input type="text" id="username" placeholder="username ...">
-                        <button  class="start" onclick="Start()">  Let's start  </button><br>
+                        <input type="text" id="username" placeholder="username"><br>
+                        <button  class="start" onclick="Start()">  Let's start  </button>
                         <div id="alert-danger"></div>
                     </section>
     `;
@@ -119,8 +123,8 @@ function countDownToStart(){
             if(i===0){
                 progressBar.classList.remove("d-none")
                 progressBar.classList.add("d-block")
-                stepperItem2.classList.add("bg-color1")
-                stepperLine1.classList.add("bg-color1")
+                stepperItem2.classList.add("bg-color-1-50")
+                stepperLine1.classList.add("bg-color-1-50")
                 document.getElementById("counter-to-start").innerText = `let's Go`
                 setTimeout(()=>nextQuestion(), 2000);
             }
@@ -132,6 +136,7 @@ function Start(){
     index = 0;
     username = "";
     score = 0;
+    progressCounter.innerText = '0%';
     username = document.getElementById("username").value;
     if(username === ""){
         document.getElementById('alert-danger').innerText = "Please username is required";
@@ -162,7 +167,7 @@ function nextQuestion() {
         `;
         for(let i = 0; i < data[index].choices.length; i++ ){
             answerContainer += `
-                <label for="${i}" id="choice${i}" class="answer-items">
+                <label for="${i}" id="choice${i}" class="answer-items bg-color-2-50">
                     ${data[index].choices[i]}
                     <input type="${typeInput}" id="${i}" name="choice" value="${i}" onclick="stylingDivAnswer()">
                 </label>
@@ -180,8 +185,8 @@ function nextQuestion() {
         index++;
         countDownTimeQuestion();
     }else{
-        stepperItem3.classList.add("bg-color1")
-        stepperLine2.classList.add("bg-color1")
+        stepperItem3.classList.add("bg-color-1-50")
+        stepperLine2.classList.add("bg-color-1-50")
         showResult();
     }
 }
@@ -254,12 +259,20 @@ function calcAnswer(answers){
 
 function showResult(){
     localStorage.setItem(username,score);
-    container.innerHTML = `<h1> congratulation ${username} your Score is : ${score}%</h1>`
+    if(score >= 75){
+        container.innerHTML = ` <div class="container-result"> 
+                                <span class="text-green">congratulation</span> ${username} <br><br>
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+    }else{
+        container.innerHTML = ` <div class="container-result"> ${username},<br>
+                                <span class="text-red">Unfortunatelty</span> you are not succes <br><br>
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+    }
 }
 
 function stylingDivAnswer() {
     let check = document.querySelectorAll(".answer-items input:checked")
     let all   = document.querySelectorAll('.answer-items')
-    all.forEach(e=>e.classList.remove('active'))
-    check.forEach(e=>e.parentElement.classList.add('active'))
+    all.forEach(e=>e.classList.remove('bg-color-2-100'))
+    check.forEach(e=>e.parentElement.classList.add('bg-color-2-100'))
 }

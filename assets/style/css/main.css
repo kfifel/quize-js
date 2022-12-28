@@ -54,6 +54,14 @@
   background-color: rgba(255, 0, 0, 0.5) !important;
 }
 
+.text-green {
+  color: green;
+}
+
+.bg-green {
+  background-color: rgba(0, 128, 0, 0.5) !important;
+}
+
 .text-blue {
   color: blue;
 }
@@ -184,6 +192,7 @@ main .stepper-bar .stepper-line {
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
+  min-height: 60vh;
   text-align: center;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -210,13 +219,18 @@ main .stepper-bar .stepper-line {
   padding: 0.5rem 1.5rem;
   font-weight: bold;
   font-size: medium;
+  text-align: center;
   background-color: rgba(65, 65, 178, 0.2);
   border-radius: 10px;
   border: none;
 }
 .container section input:focus {
-  border: 1px solid #F67196;
-  background-color: rgba(246, 113, 150, 0.2);
+  border: none;
+  background-color: rgba(65, 65, 178, 0.5);
+  color: #FEFEFE;
+}
+.container section input::placeholder {
+  color: #4141B2;
 }
 .container section .start {
   padding: 0.5rem 1.5rem;
@@ -233,6 +247,9 @@ main .stepper-bar .stepper-line {
 .container section #alert-danger {
   color: red;
   margin-top: 1.5rem;
+}
+.container .container-result {
+  font-size: xx-large;
 }
 
 .alert-danger {
@@ -265,11 +282,17 @@ main .stepper-bar .stepper-line {
   grid-template-columns: auto auto;
   gap: 2rem;
   margin-top: 2rem;
+  color: #FEFEFE;
 }
 .quiz-container .answer .answer-items {
+  position: relative;
   padding: 2rem;
-  background-color: rgba(246, 113, 150, 0.3);
   border-radius: 10px;
+}
+.quiz-container .answer .answer-items input {
+  position: absolute;
+  left: 4px;
+  top: 4px;
 }
 .quiz-container .answer .active {
   background-color: rgba(246, 113, 150, 0.8);

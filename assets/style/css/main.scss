@@ -1,7 +1,7 @@
 $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
-$colors: [red, blue, white, black];
+$colors: [red, green, blue, white, black];
 $displays: [none, block, inline];
 
 $my-colors: (#F67196, #4141B2, #FEFEFE);
@@ -122,6 +122,7 @@ main{
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
+  min-height: 60vh;
   text-align: center;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -147,12 +148,18 @@ main{
       padding: .5rem 1.5rem;
       font-weight: bold;
       font-size: medium;
+      text-align: center;
       background-color: rgb($color2, 20%);
       border-radius: 10px;
       border: none;
       &:focus{
-        border: 1px solid $color1;
-        background-color: rgb($color1, 20%);
+        //border: 1px solid $color1;
+        border: none;
+        background-color: rgb($color2, 50%);
+        color: $color3;
+      }
+      &::placeholder{
+        color: $color2;
       }
     }
     .start{
@@ -171,6 +178,9 @@ main{
       color: red;
       margin-top: 1.5rem;
     }
+  }
+  .container-result{
+    font-size: xx-large;
   }
 }
 .alert-danger{
@@ -201,12 +211,16 @@ main{
     grid-template-columns: auto auto;
     gap: 2rem;
     margin-top: 2rem;
+    color: $color3;
     .answer-items{
+      position: relative;
       padding: 2rem;
-      background-color: rgb($color1, 30%);
       border-radius: 10px;
       input{
         //display: none;
+        position: absolute;
+        left: 4px;
+        top: 4px;
       }
     }
     .active{
