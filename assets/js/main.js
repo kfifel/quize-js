@@ -1,25 +1,47 @@
-const container = document.querySelector(".container")
-const progressBar = document.querySelector(".progress")
-const stepperBar = document.querySelector(".stepper-bar")
+const container       = document.querySelector(".container")
+const progressBar     = document.querySelector(".progress")
+const stepperBar      = document.querySelector(".stepper-bar")
 const progressCounter = document.querySelector("#progress-counter")
-const stepperItem2  = document.querySelector("#stepper-item-2")
-const stepperItem3  = document.querySelector("#stepper-item-3")
-const stepperLine1 = document.querySelector("#stepper-line-1")
-const stepperLine2  = document.querySelector("#stepper-line-2")
+const stepperItem2    = document.querySelector("#stepper-item-2")
+const stepperItem3    = document.querySelector("#stepper-item-3")
+const stepperLine1    = document.querySelector("#stepper-line-1")
+const stepperLine2    = document.querySelector("#stepper-line-2")
 
 let username;
 let index;
 let score;
 let size_progress_bar = .0;
+
+let questions = [];
+let size = 0;
+//   ------------------------------- Getting data -----------------------------------------------------
+
+let ajax = new XMLHttpRequest()
+ajax.onreadystatechange = function() {
+    if ( ajax.readyState === 4 && ajax.status === 200) {
+        questions = JSON.parse(ajax.responseText);
+        size = questions.length;
+        questions.sort(()=> Math.random() - 0.5 );
+    }
+};
+ajax.open("GET", 'assets/js/typescript/data/Question.json', true);
+ajax.send();
+
+
+//   -------------------------   components  --------------------------------------------------------------
+
 function rankedComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
     stepperBar.style.display = "none";
-    let rankedData = new Map();
+    container.classList.add("bg-color-1-25");
+    container.classList.remove("bg-color-1-75");
+    let localStorageData = new Map();
     for (let key of Object.keys(localStorage)) {
         let value = JSON.parse(localStorage.getItem(key));
-        rankedData.set(key, value);
+        localStorageData.set(key, value);
     }
+    const rankedData = new Map([...localStorageData.entries()].sort((b, a) => a[1] - b[1]));
 
     let content = `
                     <article>
@@ -27,17 +49,30 @@ function rankedComponent(){
                             <table>
                             <thead>
                                 <tr>
+                                    <th>top</th>
                                     <th>username</th>
                                     <th>score</th>
                                 </tr>
                             </thead>
                             </tbody>`;
-
+                let i = 0;
                 for (let [key, value] of rankedData){
+                    i++;
+                    if(key === username){
+                        content += `               
+                                 <tr class="bg-color-1-75">
+                                    <td>${i}</td> 
+                                    <td>${key}</td> 
+                                    <td>${value}%</td> 
+                                </tr>           
+                        `;
+                        continue;
+                    }
                     content += `               
                                  <tr>
+                                    <td>${i}</td> 
                                     <td>${key}</td> 
-                                    <td>${value}</td> 
+                                    <td>${value}%</td> 
                                 </tr>           
                     `;
                 }
@@ -49,14 +84,17 @@ function rankedComponent(){
 
     container.innerHTML = content;
 }
+
 function dashboardComponent(){
     progressBar.classList.add("d-none")
     progressBar.classList.remove("d-block")
-    stepperItem2.classList.remove("bg-color1")
-    stepperLine1.classList.remove("bg-color1")
-    stepperItem3.classList.remove("bg-color1")
-    stepperLine2.classList.remove("bg-color1")
+    stepperItem2.classList.remove("bg-color-1-50")
+    stepperLine1.classList.remove("bg-color-1-50")
+    stepperItem3.classList.remove("bg-color-1-50")
+    stepperLine2.classList.remove("bg-color-1-50")
     stepperBar.style.display = "flex";
+    container.classList.remove("bg-color-1-25");
+    container.classList.add("bg-color-1-75");
     size_progress_bar = 0;
     document.querySelector(".progress-bar").style.width = "0";
     container.innerHTML = `
@@ -69,33 +107,36 @@ function dashboardComponent(){
                     </article>
                     <section>
                         <label for="username" class="">Put your UserName here to starts: <br></label>
-                        <input type="text" id="username" placeholder="username ...">
+                        <input type="text" id="username" placeholder="username"><br>
                         <button  class="start" onclick="Start()">  Let's start  </button>
                         <div id="alert-danger"></div>
                     </section>
     `;
 }
+
+
 function countDownToStart(){
     document.querySelector(".bg-color2")
     for (let i = 5; i >= 0; i--) {
         setTimeout(() =>{
             document.getElementById("counter-to-start").innerText = `${i}`
             if(i===0){
+                progressBar.classList.remove("d-none")
+                progressBar.classList.add("d-block")
+                stepperItem2.classList.add("bg-color-1-50")
+                stepperLine1.classList.add("bg-color-1-50")
                 document.getElementById("counter-to-start").innerText = `let's Go`
-                setTimeout(()=>quizStart(), 2000);
+                setTimeout(()=>nextQuestion(), 2000);
             }
         }, (5 - i) * 1000);
     }
 }
 
 function Start(){
-    progressBar.classList.remove("d-none")
-    progressBar.classList.add("d-block")
-    stepperItem2.classList.add("bg-color1")
-    stepperLine1.classList.add("bg-color1")
     index = 0;
     username = "";
     score = 0;
+    progressCounter.innerText = '0%';
     username = document.getElementById("username").value;
     if(username === ""){
         document.getElementById('alert-danger').innerText = "Please username is required";
@@ -108,59 +149,6 @@ function Start(){
         countDownToStart();
     }
 }
-//   ------------------------------- Getting data -----------------------------------------------------
-
-    let ajax = new XMLHttpRequest()
-    let questions = [];
-    let size = 0;
-    ajax.onreadystatechange = function() {
-        if ( ajax.readyState === 4 && ajax.status === 200) {
-            questions = JSON.parse(ajax.responseText);
-            size = questions.length;
-            questions.sort(()=> Math.random() - 0.5 );
-        }
-    };
-    ajax.open("GET", 'assets/js/typescript/data/Question.json', true);
-    ajax.send();
-
-
-//   ---------------------------------------------------------------------------------------
-
-function countDownTimeQuestion() {
-        let counter_question = document.querySelector("#counter-question")
-        let i = 20;
-        const interval = setInterval(() => {
-            try{
-                i--;
-                counter_question.innerHTML = i;
-                if( i < 10){
-                    counter_question.classList.add("text-white")
-                    counter_question.parentElement.style.backgroundColor = "red";
-                    document.querySelector(".timer-question box-icon").setAttribute("animation","tada");
-                }
-                if (i === 0) {
-                    clearInterval(interval);
-                    document.querySelector(".btn-next").setAttribute("disabled", "disabled");
-                    setTimeout(()=>{
-                        counter_question.innerHTML = '--';
-                        size_progress_bar += 100/size;
-                        for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
-                            setTimeout(function() {
-                                progressCounter.innerText = `${i}%`
-                            }, 50 * j );
-                        }
-                        setTimeout(()=>{nextQuestion();}, 1000)
-                    }, 1000)
-                }
-                document.querySelector(".btn-next")
-                    .addEventListener("click", ()=> clearInterval(interval))
-            }catch (e){
-                clearInterval(interval);
-            }
-
-        }, 1000);
-
-}
 
 function nextQuestion() {
     if(index < size){
@@ -171,7 +159,7 @@ function nextQuestion() {
                     <h2>
                         ${data[index].question}  
                         <div class="timer-question">
-                            <box-icon name='timer'" ></box-icon>
+                            <box-icon name='timer' size='lg' ></box-icon>
                             <span id="counter-question">20</span>
                         </div>
                     </h2>
@@ -179,7 +167,7 @@ function nextQuestion() {
         `;
         for(let i = 0; i < data[index].choices.length; i++ ){
             answerContainer += `
-                <label for="${i}" id="choice${i}" class="answer-items">
+                <label for="${i}" id="choice${i}" class="answer-items bg-color-2-50">
                     ${data[index].choices[i]}
                     <input type="${typeInput}" id="${i}" name="choice" value="${i}" onclick="stylingDivAnswer()">
                 </label>
@@ -197,29 +185,57 @@ function nextQuestion() {
         index++;
         countDownTimeQuestion();
     }else{
-        stepperItem3.classList.add("bg-color1")
-        stepperLine2.classList.add("bg-color1")
+        stepperItem3.classList.add("bg-color-1-50")
+        stepperLine2.classList.add("bg-color-1-50")
         showResult();
     }
 }
-function showResult(){
-    localStorage.setItem(username,score);
-    container.innerHTML = `<h1> congratulation ${username} your Score is : ${score}%</h1>`
+
+function countDownTimeQuestion() {
+        let counter_question = document.querySelector("#counter-question")
+        let i = 20;
+        const interval = setInterval(() => {
+            try{
+                i--;
+                counter_question.innerText = `${i}`;
+                if( i < 10){
+                    counter_question.classList.add("text-white")
+                    counter_question.parentElement.style.backgroundColor = "red";
+                    document.querySelector(".timer-question box-icon").setAttribute("animation","tada");
+                }
+                if (i === 0) {
+                    clearInterval(interval);
+                    document.querySelector(".btn-next").setAttribute("disabled", "disabled");
+                    setTimeout(()=>{
+                        counter_question.innerHTML = '--';
+                        updateProgressBar();
+                        setTimeout(()=>{nextQuestion();}, 1000)
+                    }, 1000)
+                }
+                document.querySelector(".btn-next")
+                    .addEventListener("click", ()=> clearInterval(interval))
+            }catch (e){
+                clearInterval(interval);
+            }
+
+        }, 1000);
+
 }
-function quizStart(){
-    nextQuestion()
+
+function updateProgressBar(){
+    size_progress_bar += 100/size;
+    for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
+        setTimeout(function() {
+            progressCounter.innerText = `${i}%`
+        }, 50 * j );
+    }
+    document.querySelector(".progress-bar").style.width = `${size_progress_bar}%`;
 }
 
 function calcAnswer(answers){
     if(document.querySelectorAll("input:checked").length > 0){
         document.querySelector(".btn-next").disabled = true;
-        size_progress_bar += 100/size;
-        for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
-            setTimeout(function() {
-                progressCounter.innerText = `${i}%`
-            }, 50 * j );
-        }
-        document.querySelector(".progress-bar").style.width = `${size_progress_bar}%`;
+        updateProgressBar()
 
         if(answers.length === 1){
             let check = document.querySelector("input:checked");
@@ -230,9 +246,9 @@ function calcAnswer(answers){
             let checks = document.querySelectorAll("input:checked");
             let userChecks = [];
             checks.forEach(check =>{
-                userChecks.push(parseInt(check.id));
+                userChecks.push(parseInt(check.value));
             })
-            if(answers.every((answer)=>userChecks.includes(answer)))
+            if(answers.every((answer)=>userChecks.includes(answer))) // peut être une beug
                 score += 100 / size;
         }
         nextQuestion();
@@ -241,9 +257,22 @@ function calcAnswer(answers){
     }
 }
 
+function showResult(){
+    localStorage.setItem(username,score);
+    if(score >= 75){
+        container.innerHTML = ` <div class="container-result"> 
+                                <span class="text-green">congratulation</span> ${username} <br><br>
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+    }else{
+        container.innerHTML = ` <div class="container-result"> ${username},<br>
+                                <span class="text-red">Unfortunatelty</span> you are not succes <br><br>
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+    }
+}
+
 function stylingDivAnswer() {
     let check = document.querySelectorAll(".answer-items input:checked")
     let all   = document.querySelectorAll('.answer-items')
-    all.forEach(e=>e.classList.remove('active'))
-    check.forEach(e=>e.parentElement.classList.add('active'))
+    all.forEach(e=>e.classList.remove('bg-color-2-100'))
+    check.forEach(e=>e.parentElement.classList.add('bg-color-2-100'))
 }

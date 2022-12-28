@@ -1,14 +1,16 @@
 $color1: #F67196;
 $color2: #4141B2;
 $color3: #FEFEFE;
-$colors: [red, blue, white, black];
+$colors: [red, green, blue, white, black];
 $displays: [none, block, inline];
 
 $my-colors: (#F67196, #4141B2, #FEFEFE);
 
-@for $i from 1 through length($my-colors) {
-  .bg-color#{$i} {
-    background-color: rgba(nth($my-colors, $i), 50%);
+@for $i from 1 through length($my-colors){
+  @for $j from 1 through 4{
+    .bg-color-#{$i}-#{$j*25} {
+      background-color: rgba(nth($my-colors, $i), $j*25%)!important;
+    }
   }
 }
 @mixin flex($direction){
@@ -116,10 +118,11 @@ main{
 }
 
 .container{
-  background-color: rgb($color2, 10%);
+  //background-color: rgb($color2, 10%);
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
+  min-height: 60vh;
   text-align: center;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -145,12 +148,18 @@ main{
       padding: .5rem 1.5rem;
       font-weight: bold;
       font-size: medium;
+      text-align: center;
       background-color: rgb($color2, 20%);
       border-radius: 10px;
       border: none;
       &:focus{
-        border: 1px solid $color1;
-        background-color: rgb($color1, 20%);
+        //border: 1px solid $color1;
+        border: none;
+        background-color: rgb($color2, 50%);
+        color: $color3;
+      }
+      &::placeholder{
+        color: $color2;
       }
     }
     .start{
@@ -170,6 +179,9 @@ main{
       margin-top: 1.5rem;
     }
   }
+  .container-result{
+    font-size: xx-large;
+  }
 }
 .alert-danger{
   color: red;
@@ -184,8 +196,8 @@ main{
   .timer-question{
     background-color: $color1;
     border-radius: 50%;
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     position: absolute;
     right: -7rem;
     top: -1rem;
@@ -199,12 +211,16 @@ main{
     grid-template-columns: auto auto;
     gap: 2rem;
     margin-top: 2rem;
+    color: $color3;
     .answer-items{
+      position: relative;
       padding: 2rem;
-      background-color: rgb($color1, 30%);
       border-radius: 10px;
       input{
         //display: none;
+        position: absolute;
+        left: 4px;
+        top: 4px;
       }
     }
     .active{
@@ -283,4 +299,7 @@ table {
     left: 1px;
     max-width: 99.75%;
   }
+}
+box-icon[name='info-circle'] {
+  color: #ff0000;
 }

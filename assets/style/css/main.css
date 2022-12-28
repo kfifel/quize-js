@@ -1,13 +1,49 @@
-.bg-color1 {
-  background-color: rgba(246, 113, 150, 0.5);
+.bg-color-1-25 {
+  background-color: rgba(246, 113, 150, 0.25) !important;
 }
 
-.bg-color2 {
-  background-color: rgba(65, 65, 178, 0.5);
+.bg-color-1-50 {
+  background-color: rgba(246, 113, 150, 0.5) !important;
 }
 
-.bg-color3 {
-  background-color: rgba(254, 254, 254, 0.5);
+.bg-color-1-75 {
+  background-color: rgba(246, 113, 150, 0.75) !important;
+}
+
+.bg-color-1-100 {
+  background-color: #f67196 !important;
+}
+
+.bg-color-2-25 {
+  background-color: rgba(65, 65, 178, 0.25) !important;
+}
+
+.bg-color-2-50 {
+  background-color: rgba(65, 65, 178, 0.5) !important;
+}
+
+.bg-color-2-75 {
+  background-color: rgba(65, 65, 178, 0.75) !important;
+}
+
+.bg-color-2-100 {
+  background-color: #4141b2 !important;
+}
+
+.bg-color-3-25 {
+  background-color: rgba(254, 254, 254, 0.25) !important;
+}
+
+.bg-color-3-50 {
+  background-color: rgba(254, 254, 254, 0.5) !important;
+}
+
+.bg-color-3-75 {
+  background-color: rgba(254, 254, 254, 0.75) !important;
+}
+
+.bg-color-3-100 {
+  background-color: #fefefe !important;
 }
 
 .text-red {
@@ -16,6 +52,14 @@
 
 .bg-red {
   background-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+.text-green {
+  color: green;
+}
+
+.bg-green {
+  background-color: rgba(0, 128, 0, 0.5) !important;
 }
 
 .text-blue {
@@ -145,10 +189,10 @@ main .stepper-bar .stepper-line {
 }
 
 .container {
-  background-color: rgba(65, 65, 178, 0.1);
   border-radius: 10px;
   padding: 4vh;
   width: 70%;
+  min-height: 60vh;
   text-align: center;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -175,13 +219,18 @@ main .stepper-bar .stepper-line {
   padding: 0.5rem 1.5rem;
   font-weight: bold;
   font-size: medium;
+  text-align: center;
   background-color: rgba(65, 65, 178, 0.2);
   border-radius: 10px;
   border: none;
 }
 .container section input:focus {
-  border: 1px solid #F67196;
-  background-color: rgba(246, 113, 150, 0.2);
+  border: none;
+  background-color: rgba(65, 65, 178, 0.5);
+  color: #FEFEFE;
+}
+.container section input::placeholder {
+  color: #4141B2;
 }
 .container section .start {
   padding: 0.5rem 1.5rem;
@@ -199,6 +248,9 @@ main .stepper-bar .stepper-line {
   color: red;
   margin-top: 1.5rem;
 }
+.container .container-result {
+  font-size: xx-large;
+}
 
 .alert-danger {
   color: red;
@@ -215,8 +267,8 @@ main .stepper-bar .stepper-line {
 .quiz-container h2 .timer-question {
   background-color: #F67196;
   border-radius: 50%;
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   position: absolute;
   right: -7rem;
   top: -1rem;
@@ -230,11 +282,17 @@ main .stepper-bar .stepper-line {
   grid-template-columns: auto auto;
   gap: 2rem;
   margin-top: 2rem;
+  color: #FEFEFE;
 }
 .quiz-container .answer .answer-items {
+  position: relative;
   padding: 2rem;
-  background-color: rgba(246, 113, 150, 0.3);
   border-radius: 10px;
+}
+.quiz-container .answer .answer-items input {
+  position: absolute;
+  left: 4px;
+  top: 4px;
 }
 .quiz-container .answer .active {
   background-color: rgba(246, 113, 150, 0.8);
@@ -310,6 +368,10 @@ table td {
   top: 1px;
   left: 1px;
   max-width: 99.75%;
+}
+
+box-icon[name=info-circle] {
+  color: #ff0000;
 }
 
 /*# sourceMappingURL=main.css.map */
