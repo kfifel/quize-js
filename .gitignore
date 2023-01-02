@@ -1,2 +1,6 @@
 *.env
 /.idea
+/vendor
+composer.lock
+*.css.map
+.env
