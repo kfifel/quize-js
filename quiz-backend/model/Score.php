@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/autoLoad.php';
+require_once '../includes/autoLoad.php';
 
 class Score
 {
