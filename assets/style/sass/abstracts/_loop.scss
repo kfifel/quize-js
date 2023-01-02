@@ -1,0 +1,36 @@
+
+@for $i from 1 through length($my-colors){
+  @for $j from 1 through 4{
+    .bg-color-#{$i}-#{$j*25} {
+      background-color: rgba(nth($my-colors, $i), $j*25%)!important;
+    }
+  }
+}
+
+@each $color in $colors{
+  .text-#{$color}{
+    color : $color;
+  }
+  .bg-#{$color}{
+    background-color : rgba($color, 50%)!important;
+  }
+}
+@each $display in $displays{
+  .d-#{$display}{
+    display: $display;
+  }
+}
+@for $i from 1 through 5{
+  .mt-#{$i}{
+    margin-top: $i * .5rem;
+  }
+  .mr-#{$i}{
+    margin-right: $i * .5rem;
+  }
+  .mb-#{$i}{
+    margin-bottom: $i * .5rem;
+  }
+  .ml-#{$i}{
+    margin-left: $i * .5rem;
+  }
+}

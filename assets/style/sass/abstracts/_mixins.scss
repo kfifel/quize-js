@@ -1,0 +1,11 @@
+
+@mixin flex($direction){
+  display: flex;
+  flex-direction: $direction;
+}
+@mixin hover2(){
+  &:hover{
+    color: $color3;
+    background-color: $color2;
+  }
+}

@@ -1,43 +1,5 @@
-$color1: #F67196;
-$color2: #4141B2;
-$color3: #FEFEFE;
-$colors: [red, green, blue, white, black];
-$displays: [none, block, inline];
 
-$my-colors: (#F67196, #4141B2, #FEFEFE);
-
-@for $i from 1 through length($my-colors){
-  @for $j from 1 through 4{
-    .bg-color-#{$i}-#{$j*25} {
-      background-color: rgba(nth($my-colors, $i), $j*25%)!important;
-    }
-  }
-}
-@mixin flex($direction){
-  display: flex;
-  flex-direction: $direction;
-}
-@mixin hover2(){
-  &:hover{
-    color: $color3;
-    background-color: $color2;
-  }
-}
-
-@each $color in $colors{
-  .text-#{$color}{
-    color : $color;
-  }
-  .bg-#{$color}{
-    background-color : rgba($color, 50%)!important;
-  }
-}
-@each $display in $displays{
-  .d-#{$display}{
-    display: $display;
-  }
-}
-*, *::before, *::after{
+*{
   box-sizing :border-box;
   font-family: Arial , monospace, monospace;
   margin: 0;
@@ -83,7 +45,7 @@ main{
   min-height: 100vh;
   width: 83.7vw;
   margin-left: 15vw;
-  background: url("../../../assets/images/background.jpg") no-repeat fixed bottom right;
+  background: url("../../../../assets/images/background.jpg") no-repeat fixed bottom right;
   background-size: 40vw 60vh ;
   .stepper-bar{
     @include flex(row);
@@ -187,24 +149,31 @@ main{
   color: red;
   margin-top: 1.5rem;
 }
+.alert-warning{
+  color:#664d03;
+  background-color:#fff3cd;
+  border:1px solid #ffecb5;
+  border-radius: 5px;
+  padding: .5rem 1rem;
+}
 #counter-to-start{
   font-size: 7rem;
 }
 .quiz-container{
   h2{
     position: relative;
-  .timer-question{
-    background-color: $color1;
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-    position: absolute;
-    right: -7rem;
-    top: -1rem;
-    @include flex(column);
-    justify-content: center;
-    align-items: center;
-  }
+    .timer-question{
+      background-color: $color1;
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+      position: absolute;
+      right: -7rem;
+      top: -1rem;
+      @include flex(column);
+      justify-content: center;
+      align-items: center;
+    }
   }
   .answer{
     display: grid;
@@ -224,8 +193,8 @@ main{
       }
     }
     .active{
-       background-color: rgb($color1, 80%);
-     }
+      background-color: rgb($color1, 80%);
+    }
     .valid{
       background-color: lawngreen;
     }
@@ -289,7 +258,7 @@ table {
     transition: 1s;
   }
   .progress-bar{
-  position: absolute;
+    position: absolute;
     width: 0;
     background-color: $color1;
     height: 8px;
@@ -302,4 +271,156 @@ table {
 }
 box-icon[name='info-circle'] {
   color: #ff0000;
+}
+/* Define the base button styles */
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  &:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+}
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  &:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+}
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+
+  &:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+}
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+  &:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+}
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+  &:hover {
+    color: #212529;
+    background-color: #e0a800;
+    border-color: #d39e00;
+  }
+}
+.btn-info {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+  &:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+}
+.btn-light {
+  color: #212529;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  &:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+  }
+}
+.btn-dark {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+  &:hover {
+    color: #fff;
+    background-color: #23272b;
+    border-color: #1d2124;
+  }
+}
+.btn-link {
+  font-weight: 400;
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  border-color: transparent;
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+.scrollable {
+  overflow: auto;
+  max-height: 60vh;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
+}
+
+.header-question{
+  @include flex(row);
+  justify-content: space-around;
+  align-items: center;
+  input{
+    padding: .3rem .6rem;
+    border-radius: .2rem;
+    border: none;
+  }
+}
+
+.form-group{
+  padding: 2rem;
+  @include flex(column);
+  justify-content: center;
+  align-items: center;
+  .form-group-item{
+    margin: 1rem 0;
+    & *{
+      font-weight: bold;
+      font-size: x-large;
+    }
+    input{
+      font-size: medium;
+      padding: .4rem 2rem;
+      color: rgba($color2, 50%);
+    }
+  }
 }
