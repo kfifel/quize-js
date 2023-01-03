@@ -6,14 +6,18 @@ const stepperItem2    = document.querySelector("#stepper-item-2")
 const stepperItem3    = document.querySelector("#stepper-item-3")
 const stepperLine1    = document.querySelector("#stepper-line-1")
 const stepperLine2    = document.querySelector("#stepper-line-2")
-
+let isConnect = false;
 let username;
 let index;
 let score;
-let size_progress_bar = .0;
+let size_progress_bar = 0;
 
 let questions = [];
 let size = 0;
+
+let duration;
+let startTime;
+let endTime;
 //   ------------------------------- Getting data -----------------------------------------------------
 
 let ajax = new XMLHttpRequest()
@@ -24,11 +28,33 @@ ajax.onreadystatechange = function() {
         questions.sort(()=> Math.random() - 0.5 );
     }
 };
-ajax.open("GET", 'assets/js/typescript/data/Question.json', true);
+//ajax.open("GET", 'assets/js/typescript/data/Question.json', true);
+ajax.open("GET", 'http://localhost:8080/quiz-backend/controller/UserController.php?questions', true);
 ajax.send();
 
 
+
 //   -------------------------   components  --------------------------------------------------------------
+/*
+$.ajax({
+    type: "POST",
+    url: 'http://localhost:8080/admin.php',
+    dataType: 'json',
+    success: function(data) {
+        console.log(data); // Outputs "value"
+    }
+});
+
+*/
+verifyUser();
+function verifyUser(){
+    if(isConnect)
+        questStartSession.innerHTML = `
+                        <button class="start" onclick="Start()">  Let's start  </button>
+`;
+}
+
+
 
 function rankedComponent(){
     progressBar.classList.add("d-none")
@@ -56,30 +82,37 @@ function rankedComponent(){
                             </thead>
                             </tbody>`;
                 let i = 0;
-                for (let [key, value] of rankedData){
-                    i++;
-                    if(key === username){
+                if(rankedData.size > 0 ) {
+                    for (let [key, value] of rankedData){
+                        i++;
+                        if(key === username){
+                            content += `               
+                                     <tr class="bg-color-1-75">
+                                        <td>${i}</td> 
+                                        <td>${key}</td> 
+                                        <td>${value}%</td> 
+                                    </tr>           
+                            `;
+                            continue;
+                        }
                         content += `               
-                                 <tr class="bg-color-1-75">
-                                    <td>${i}</td> 
-                                    <td>${key}</td> 
-                                    <td>${value}%</td> 
-                                </tr>           
+                                     <tr>
+                                        <td>${i}</td> 
+                                        <td>${key}</td> 
+                                        <td>${value}%</td> 
+                                    </tr>           
                         `;
-                        continue;
                     }
-                    content += `               
-                                 <tr>
-                                    <td>${i}</td> 
-                                    <td>${key}</td> 
-                                    <td>${value}%</td> 
-                                </tr>           
+                    content +=`</tbody>
+                                             </table>
+                                    </article>
                     `;
+                }else{
+                    content = `<article>
+                                    <h1>Global Ranked</h1>
+                                    <div class='alert-warning'> No ranked is saved </div>
+                                </article>`
                 }
-    content +=`</tbody>
-                             </table>
-                    </article>
-    `;
 
 
     container.innerHTML = content;
@@ -105,13 +138,15 @@ function dashboardComponent(){
                             Are you ready !!!
                         </p>
                     </article>
-                    <section>
+                    <section id="questStartSession">
                         <label for="username" class="">Put your UserName here to starts: <br></label>
-                        <input type="text" id="username" placeholder="username"><br>
-                        <button  class="start" onclick="Start()">  Let's start  </button>
+                        <input type="text" id="username" placeholder="username" required><br>
+                        <input type="password" id="password" placeholder="password" required><br>
+                        <button class="start" onclick="login()">  Let's start  </button>
                         <div id="alert-danger"></div>
                     </section>
     `;
+    verifyUser();
 }
 
 
@@ -132,21 +167,44 @@ function countDownToStart(){
     }
 }
 
+function login(){
+    username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+
+    ajax.open('POST', "../../quiz-backend/controller/Authentication.php", true);
+    ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    ajax.send("login&username="+username+"&password="+password);
+
+    function getResponseLogin(resp) {
+        isConnect = resp;
+        Start();
+    }
+
+    ajax.onreadystatechange = ()=>{
+        if(ajax.readyState === 4 && ajax.status === 200){
+            console.log(ajax.responseText);
+            getResponseLogin(JSON.parse(ajax.responseText));
+        }
+    }
+}
+
 function Start(){
+    verifyUser();
     index = 0;
-    username = "";
     score = 0;
     progressCounter.innerText = '0%';
-    username = document.getElementById("username").value;
-    if(username === ""){
-        document.getElementById('alert-danger').innerText = "Please username is required";
-    }else{
+    if(isConnect){
+
+        startTime = Date.now();
         document.querySelector(".container").innerHTML = `
             <article>
                 <h1>Quiz well start in <br> <span id="counter-to-start"></span></h1>
             </article>
         `;
         countDownToStart();
+    }else{
+        document.getElementById('alert-danger').innerText = "Please username is required";
     }
 }
 
@@ -187,6 +245,22 @@ function nextQuestion() {
     }else{
         stepperItem3.classList.add("bg-color-1-50")
         stepperLine2.classList.add("bg-color-1-50")
+
+        endTime = Date.now();
+        let timePassed = endTime - startTime;
+        function formatDuration(time) {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            return  ''+ time / 60000;
+
+            let result = '';
+            if (hours > 0) result += `${hours}h `;
+            if (minutes > 0) result += `${minutes}m `;
+            if (seconds > 0) result += `${seconds}s`;
+            return result.trim();
+        }
+        duration = formatDuration(timePassed);
         showResult();
     }
 }
@@ -212,7 +286,16 @@ function countDownTimeQuestion() {
                         setTimeout(()=>{nextQuestion();}, 1000)
                     }, 1000)
                 }
+
                 document.querySelector(".btn-next")
+                    .addEventListener("click", ()=> {
+                        clearInterval(interval)
+                    })
+
+                document.getElementById('rankedComponent')
+                    .addEventListener("click", ()=> clearInterval(interval))
+
+                document.getElementById('dashboardComponent')
                     .addEventListener("click", ()=> clearInterval(interval))
             }catch (e){
                 clearInterval(interval);
@@ -262,11 +345,15 @@ function showResult(){
     if(score >= 75){
         container.innerHTML = ` <div class="container-result"> 
                                 <span class="text-green">congratulation</span> ${username} <br><br>
-                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span>
+                                <br> time passed :  ${duration}
+                                </div>`
     }else{
-        container.innerHTML = ` <div class="container-result"> ${username},<br>
+        container.innerHTML = ` <div class="container-result"> ${username}<br>
                                 <span class="text-red">Unfortunatelty</span> you are not succes <br><br>
-                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span></div>`
+                                Your score is : <br><br> <span class="text-boald text-blue">${score}%</span>
+                                <br> time passed :  ${duration}
+                                </div>`
     }
 }
 
