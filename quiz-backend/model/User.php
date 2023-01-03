@@ -14,12 +14,11 @@ class User
     public string $os = "";
 
 
-    public function __construct(int $id, string $first_name, string $last_name, array $score = [], string $ip_address = '', string $browser = '', string $os = '')
+    public function __construct(int $id, string $first_name, string $last_name,  string $ip_address = '', string $browser = '', string $os = '')
     {
         $this->id = $id;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
-        $this->score = $score;
         $this->ip_address = $ip_address;
         $this->browser = $browser;
         $this->os = $os;

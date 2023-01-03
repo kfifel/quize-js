@@ -50,13 +50,14 @@
     "answers": [ 1 ]
   },
   {
-    "question": "What is polymorphism in PHP OOP?",
+    "question": "What is the correct way to define a class in PHP?",
     "choices": [
-      "A way to create multiple copies of an object",
-      "A way to access properties and methods of a class from outside the class",
-      "A feature of object-oriented programming that allows a single interface to be used for multiple forms of an object",
-      "A way to define a class in PHP"
+      "function MyClass { }",
+      "class MyClass { }",
+      "define MyClass { }",
+      "class { MyClass }",
+      "None of the above"
     ],
-    "answers": [ 2 ]
+    "answers": [1]
   }
 ]
