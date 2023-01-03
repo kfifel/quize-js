@@ -13,8 +13,14 @@ class AdminController
     function getAllQuestions():void{
         echo $this->admin->getAllQuestions();
     }
+
+    public function createQuestion():void
+    {
+        echo $this->admin->addQuestions($_POST['question'], $_POST['choices'], $_POST['answers']);
+    }
 }
 
 $adminController = new AdminController();
 
 if(isset($_GET['questions']))    $adminController->getAllQuestions();
+if(isset($_GET['save_question'])) $adminController->createQuestion();

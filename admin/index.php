@@ -85,7 +85,7 @@
                         <label for="choice1">
                             <span class="text-red">*</span>Choice 1 :
                             <input type="text" name="choice" id="choice1">
-                            <input type="checkbox" id="checkboxChoice1">
+                            <input type="checkbox" id="checkboxChoice1" value="0">
                         </label>
                     </div>
 
@@ -93,7 +93,7 @@
                         <label for="choice2">
                             <span class="text-red">*</span>Choice 2 :
                             <input type="text" name="choice" id="choice2">
-                            <input type="checkbox" id="checkboxChoice2">
+                            <input type="checkbox" id="checkboxChoice2" value="1">
                         </label>
                     </div>
 
@@ -101,7 +101,7 @@
                         <label for="choice3">
                             Choice 3 :
                             <input type="text" name="choice" id="choice3">
-                            <input type="checkbox" id="checkboxChoice3">
+                            <input type="checkbox" id="checkboxChoice3" value="2">
                         </label>
                     </div>
 
@@ -109,7 +109,7 @@
                         <label for="choice3">
                             Choice 4 :
                             <input type="text" name="choice" id="choice4">
-                            <input type="checkbox" id="checkboxChoice4">
+                            <input type="checkbox" id="checkboxChoice4" value="3">
                         </label>
                     </div>
                 </form>

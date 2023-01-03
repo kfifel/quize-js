@@ -19,7 +19,7 @@ function setData(res){
 }
 
 function showQuestion(){
-
+    tbody.innerHTML = '';
     questions.forEach((q)=>{
         tbody.innerHTML += `
         <tr>
@@ -63,15 +63,32 @@ cancelBtn.onclick = () => {
     cancelAction();
 }
 function createQuestion() {
-    let question = document.getElementById('question')
+    let question = document.getElementById('question').value;
     let choicesInputs = document.querySelectorAll('input[name="choice"]');
     let correctChoicesInput = document.querySelectorAll('.form-group-item input:checked');
-    let choicesInputsNotEmpty = [];
-        choicesInputs.forEach(input=>{
-            if(input.value !== "")
-                choicesInputsNotEmpty.push(input);
-        })
+    let choices=[];
+    choicesInputs.forEach(e=>choices.push(e.value))
+    let answers=[];
+    correctChoicesInput.forEach(e=>answers.push(e.value))
 
+    let data = {
+        "question":question,
+        "choices":[...choices],
+        "answers":[...answers]
+    }
+
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/quiz-backend/controller/AdminController.php?save_question=1",
+        data: data,
+        ContentType: 'application/json',
+        success: function(response) {
+            console.log(response)
+            getAllQuestions();
+            showQuestion();
+        }
+    });
 
 }
 function cancelAction() {

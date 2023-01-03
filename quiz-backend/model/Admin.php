@@ -16,9 +16,31 @@ class Admin
     }
 
 
-    public function addQuestions():bool
+    public function addQuestions($question, array $choices, array $answers):string
     {
-        return true;
+        $conn = Database::connect();
+        $query = "insert into question values(null, '".$question."')";
+        $res1 = $conn->query($query);
+        if($res1){
+            $res2 =$conn->query("select id from question order by id desc limit 1");
+            $id = $res2->fetch(PDO::FETCH_ASSOC)['id'];
+            for($j = 0; $j < count($choices); $j++){
+                foreach ($answers as $answer){
+                    if($j == $answer){
+                        $conn->query("insert into choice 
+                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 1 )");
+                        break;
+                    }else{
+                        $conn->query("insert into choice 
+                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 0 )");
+                        break;
+                    }
+                }
+            }
+            return "true";
+        }
+        return "false";
+
     }
 
     public function deleteQuestion(): bool
