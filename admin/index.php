@@ -26,6 +26,9 @@
           <li>
             <div><h3>Management Question </h3></div>
           </li>
+          <li>
+            <div><h3>Management Choices </h3></div>
+          </li>
         </ul>
       </div>
     </aside>
@@ -125,6 +128,7 @@
 
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" ></script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/admin/assets/js/main.admin.js"></script>
 </body>
 </html>

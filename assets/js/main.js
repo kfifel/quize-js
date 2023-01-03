@@ -307,7 +307,7 @@ function countDownTimeQuestion() {
 
 function updateProgressBar(){
     size_progress_bar += 100/size;
-    for (let i = size_progress_bar - 100/size + 0.5, j = 0; i <= size_progress_bar; i++, j++) {
+    for (let i = size_progress_bar - 100/size , j = 0; i <= size_progress_bar; i++, j++) {
         setTimeout(function() {
             progressCounter.innerText = `${i}%`
         }, 50 * j );

@@ -1,12 +1,5 @@
 <?php
 require_once '../includes/autoLoad.php';
-// set my env variable in the env variable of the app
-//require_once '../../vendor/autoload.php';
-//$dotenv = Dotenv\Dotenv::createImmutable("../../");
-//$dotenv->load();
-
-//echo 'h: |'.getenv('HOST')."|fin<hr>";
-
 class Database
 {
     private static string $host;
@@ -23,10 +16,10 @@ class Database
 
     public static function setConnectionInfo():void
     {
-        self::$host = "localhost"; // getenv('HOST');
-        self::$user = "root";// getenv('USER');
-        self::$database = "quiz";// getenv('DATABASE');
-        self::$password = "";// getenv('PASSWORD');
+        self::$host = "localhost";
+        self::$user = "root";
+        self::$database = "quiz";
+        self::$password = "";
     }
 
     public static function connect(): PDO

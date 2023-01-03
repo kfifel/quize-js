@@ -84,7 +84,13 @@ function createQuestion() {
         data: data,
         ContentType: 'application/json',
         success: function(response) {
-            console.log(response)
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
             getAllQuestions();
             showQuestion();
         }

@@ -215,8 +215,9 @@
 
 /* The modal header */
 .modal-header {
-  padding: 2px 16px;
+  padding: 12px 16px;
   background-color: #4141B2;
+  text-align: center;
   color: white;
   border-radius: 10px 10px 0 0;
 }
@@ -251,24 +252,24 @@
 
 .cancel-btn {
   background-color: white;
-  color: black;
+  color: white !important;
   border: 2px solid #4141B2;
 }
 
 .cancel-btn:hover {
-  background-color: #4141B2;
-  color: white;
+  border: 1px solid #FEFEFE !important;
+  color: white !important;
 }
 
 .confirm-btn {
   background-color: white;
-  color: black;
+  color: #FEFEFE !important;
   border: 2px solid #F67196;
 }
 
 .confirm-btn:hover {
-  background-color: #4141B2;
-  color: white;
+  border: 1px solid #FEFEFE !important;
+  color: white !important;
 }
 
 /* The animation */
