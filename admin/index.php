@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="shortcut icon" href="../assets/images/logo-top.png" type="image/x-icon">
-  <link rel="stylesheet" href="../assets/style/css/main.css">
+  <link rel="stylesheet" href="../assets/style/sass/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <title>Dashboard</title>
 </head>
@@ -20,10 +20,10 @@
       </div>
       <div class="nav-header">
         <ul>
-          <li onclick="#">
+          <li>
             <div><h3>Dashboard</h3></div>
           </li>
-          <li onclick="QuestionComponent()">
+          <li>
             <div><h3>Management Question </h3></div>
           </li>
         </ul>
@@ -52,61 +52,8 @@
                         <th>Edit</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Que signifie PHP?</td>
-                        <td>
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
-                        </td>
-                    </tr>
+                    <tbody id="tbody">
+
                     </tbody>
                 </table>
             </div>
@@ -137,7 +84,7 @@
                     <div class="form-group-item">
                         <label for="choice1">
                             <span class="text-red">*</span>Choice 1 :
-                            <input type="text" name="choice1" id="choice1">
+                            <input type="text" name="choice" id="choice1">
                             <input type="checkbox" id="checkboxChoice1">
                         </label>
                     </div>
@@ -145,7 +92,7 @@
                     <div class="form-group-item">
                         <label for="choice2">
                             <span class="text-red">*</span>Choice 2 :
-                            <input type="text" name="choice2" id="choice2">
+                            <input type="text" name="choice" id="choice2">
                             <input type="checkbox" id="checkboxChoice2">
                         </label>
                     </div>
@@ -153,7 +100,7 @@
                     <div class="form-group-item">
                         <label for="choice3">
                             Choice 3 :
-                            <input type="text" name="choice3" id="choice3">
+                            <input type="text" name="choice" id="choice3">
                             <input type="checkbox" id="checkboxChoice3">
                         </label>
                     </div>
@@ -161,7 +108,7 @@
                     <div class="form-group-item">
                         <label for="choice3">
                             Choice 4 :
-                            <input type="text" name="choice4" id="choice4">
+                            <input type="text" name="choice" id="choice4">
                             <input type="checkbox" id="checkboxChoice4">
                         </label>
                     </div>
@@ -169,11 +116,8 @@
                 <span class="text-blue">checkbox is for the correct answers</span>
             </div>
         </div>
-        <!-- The modal footer -->
         <div class="modal-footer">
-            <!-- The cancel button -->
             <button class="btn cancel-btn" id="cancel-btn">Cancel</button>
-            <!-- The confirm button -->
             <button class="btn confirm-btn" id="confirm-btn">Confirm</button>
         </div>
     </div>
@@ -182,53 +126,5 @@
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" ></script>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/admin/assets/js/main.admin.js"></script>
-<script>
-    var modal = document.getElementById("myModal");
-
-    // Get the trigger element
-    var btn = document.getElementById("myBtn");
-
-    // Get the close button
-    var close = document.getElementsByClassName("close")[0];
-
-
-    btn.addEventListener('click', function() {
-        modal.style.display = "block";
-    })
-
-    // When the user clicks the close button, close the modal
-    close.onclick = function() {
-        modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    }
-    var confirmBtn = document.getElementById("confirm-btn");
-    var cancelBtn = document.getElementById("cancel-btn");
-    confirmBtn.onclick = function() {
-        modal.style.display = "none";
-        confirmAction();
-    }
-
-    // When the user clicks the cancel button, close the modal and run the cancel function
-    cancelBtn.onclick = function() {
-        modal.style.display = "none";
-        cancelAction();
-    }
-
-    // Add a function to confirm the action
-    function confirmAction() {
-        // Do something here to confirm the action
-        alert("The action was confirmed!");
-    }
-
-    // Add a function to cancel the action
-    function cancelAction() {
-        // Do something here to cancel the action
-        alert("The action was cancelled!");
-    }
-</script>
 </body>
 </html>
