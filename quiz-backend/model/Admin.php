@@ -25,17 +25,22 @@ class Admin
             $res2 =$conn->query("select id from question order by id desc limit 1");
             $id = $res2->fetch(PDO::FETCH_ASSOC)['id'];
             for($j = 0; $j < count($choices); $j++){
+                $exist = 0;
                 foreach ($answers as $answer){
                     if($j == $answer){
-                        $conn->query("insert into choice 
-                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 1 )");
-                        break;
-                    }else{
-                        $conn->query("insert into choice 
-                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 0 )");
+                        $exist = 1;
                         break;
                     }
                 }
+
+                if($exist){
+                    $conn->query("insert into choice 
+                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 1 )");
+                }else{
+                    $conn->query("insert into choice 
+                            (id_question, choice, correctAnswer) values ('".$id."','". $choices[$j]."', 0 )");
+                }
+
             }
             return "true";
         }
