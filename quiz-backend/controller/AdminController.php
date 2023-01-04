@@ -18,9 +18,15 @@ class AdminController
     {
         echo $this->admin->addQuestions($_POST['question'], $_POST['choices'], $_POST['answers']);
     }
+
+    public function searchQuestion():void
+    {
+        echo $this->admin->searchQuestion($_GET['search']);
+    }
 }
 
 $adminController = new AdminController();
 
 if(isset($_GET['questions']))    $adminController->getAllQuestions();
 if(isset($_GET['save_question'])) $adminController->createQuestion();
+if(isset($_GET['search'])) $adminController->searchQuestion();
