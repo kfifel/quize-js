@@ -85,9 +85,9 @@ function createQuestion() {
         ContentType: 'application/json',
         success: function(response) {
             Swal.fire({
-                position: 'top-end',
+                position: 'center-center',
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Your work has been saved ',
                 showConfirmButton: false,
                 timer: 1500
             })
