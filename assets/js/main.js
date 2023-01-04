@@ -15,9 +15,9 @@ let size_progress_bar = 0;
 let questions = [];
 let size = 0;
 
-let duration;
-let startTime;
-let endTime;
+let duration = 0;
+let startTime = 0;
+let endTime = 0;
 //   ------------------------------- Getting data -----------------------------------------------------
 
 let ajax = new XMLHttpRequest()
@@ -247,20 +247,13 @@ function nextQuestion() {
         stepperLine2.classList.add("bg-color-1-50")
 
         endTime = Date.now();
-        let timePassed = endTime - startTime;
         function formatDuration(time) {
-            const hours = Math.floor(time / 3600);
-            const minutes = Math.floor((time % 3600) / 60);
-            const seconds = time % 60;
-            return  ''+ time / 60000;
-
-            let result = '';
-            if (hours > 0) result += `${hours}h `;
-            if (minutes > 0) result += `${minutes}m `;
-            if (seconds > 0) result += `${seconds}s`;
-            return result.trim();
+            let date = new Date()
+            console.log(time)
+            console.log(date.getHours())
+            return `${date.getHours()+'h'+date.getMinutes()+'min'+date.getSeconds()+'s'}`;
         }
-        duration = formatDuration(timePassed);
+        duration = formatDuration(endTime - startTime);
         showResult();
     }
 }
@@ -307,7 +300,7 @@ function countDownTimeQuestion() {
 
 function updateProgressBar(){
     size_progress_bar += 100/size;
-    for (let i = size_progress_bar - 100/size , j = 0; i <= size_progress_bar; i++, j++) {
+    for (let i = size_progress_bar - 100/size+0.5 , j = 0; i <= size_progress_bar; i++, j++) {
         setTimeout(function() {
             progressCounter.innerText = `${i}%`
         }, 50 * j );
