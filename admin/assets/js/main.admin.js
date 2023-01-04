@@ -1,17 +1,27 @@
 const container = document.querySelector(".container")
+const searchInput = document.querySelector("#search-text")
 //const tbody = document.getElementsByName("tbody")
 ajax = new XMLHttpRequest();
-
 let questions = [] ;
 getAllQuestions();
-function getAllQuestions(){
-    ajax.open('GET', 'http://localhost:8080/quiz-backend/controller/AdminController.php?questions', true);
-    ajax.send();
-    ajax.onreadystatechange = ()=>{
-        if(ajax.status === 200 && ajax.readyState === 4){
-            setData(JSON.parse(ajax.response));
+function searchQuestions(){
+    getAllQuestions(searchInput.value);
+}
+
+function getAllQuestions(search){
+        if(!search)
+            ajax.open('GET', 'http://localhost:8080/quiz-backend/controller/AdminController.php?questions', true);
+        else
+            ajax.open('GET', 'http://localhost:8080/quiz-backend/controller/AdminController.php?search='+search+'', true);
+
+
+        ajax.send();
+        ajax.onreadystatechange = ()=>{
+            if(ajax.status === 200 && ajax.readyState === 4){
+                console.log(ajax.response)
+                setData(JSON.parse(ajax.response));
+            }
         }
-    }
 }
 function setData(res){
     questions = res;

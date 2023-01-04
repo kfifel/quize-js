@@ -24,7 +24,7 @@ class Admin
         if($res1){
             $res2 =$conn->query("select id from question order by id desc limit 1");
             $id = $res2->fetch(PDO::FETCH_ASSOC)['id'];
-            for($j = 0; $j < count($choices); $j++){
+            for($j = 0, $jMax = count($choices); $j < $jMax; $j++){
                 $exist = 0;
                 foreach ($answers as $answer){
                     if($j == $answer){
@@ -64,6 +64,12 @@ class Admin
     {
         $conn = Database::connect();
         return json_encode($conn->query("select * from question")->fetchAll(PDO::FETCH_ASSOC));
+    }
+
+    public function searchQuestion(string $search):string
+    {
+        $conn = Database::connect();
+        return json_encode($conn->query("select * from question where question like '%".$search."%'")->fetchAll(PDO::FETCH_ASSOC));
     }
 
 }

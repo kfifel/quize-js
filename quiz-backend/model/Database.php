@@ -16,10 +16,10 @@ class Database
 
     public static function setConnectionInfo():void
     {
-        self::$host = "localhost";
-        self::$user = "root";
-        self::$database = "quiz";
-        self::$password = "";
+        self::$host = "localhost"; // getenv('HOST');
+        self::$user = "kfifel";// getenv('USER');
+        self::$database = "quiz";// getenv('DATABASE');
+        self::$password = "password";// getenv('PASSWORD');
     }
 
     public static function connect(): PDO
