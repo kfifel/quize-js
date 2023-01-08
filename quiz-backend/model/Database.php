@@ -1,6 +1,8 @@
 <?php
 require_once '../includes/autoLoad.php';
-class Database
+
+
+final class Database
 {
     private static string $host;
     private static string $user;
@@ -9,7 +11,7 @@ class Database
 
     public static ?PDO $conn = null;
 
-    public function __construct()
+    private function __construct()
     {
         self::$conn = self::connect();
     }
