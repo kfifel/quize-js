@@ -36,9 +36,9 @@ function showQuestion(){
                         <td>${q.id}</td>
                         <td>${q.question}</td>
                         <td class="d-flex">
-                            <button class="btn"><i class="fa fa-trash text-green"></i></button>
-                            <button class="btn"><i class="fa fa-solid fa-pen text-blue"></i></button>
-                            <button class="btn"><i class="fa fa-eye text-red"></i></button>
+                            <button class="btn" onclick="overview()" ><i class="fa fa-eye text-blue"></i></button>
+                            <button class="btn" onclick="editQuestion(${q.id})"><i class="fa fa-solid fa-pen text-green"></i></button>
+                            <button class="btn" onclick="deleteQuestion(${q.id})" ><i class="fa fa-trash text-red"></i></button>
                         </td>
                     </tr>
         `;
@@ -111,3 +111,45 @@ function cancelAction() {
     alert("The action was cancelled!");
 }
 
+function editQuestion(id) {
+
+}
+function overview() {
+
+}
+function deleteQuestion(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            ajax.open('GET', 'http://localhost:8080/quiz-backend/controller/AdminController.php?question-delete='+id, true);
+            ajax.send();
+            ajax.onreadystatechange = ()=>{
+                if(ajax.status === 200 && ajax.readyState === 4){
+                    console.log(ajax.response)
+                    if(parseInt(ajax.response)){
+                        getAllQuestions()
+                        Swal.fire(
+                            'Deleted!',
+                            `Question with id ${id} has been deleted.`,
+                            'success'
+                        )
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                }
+            }
+        }
+    })
+
+}
