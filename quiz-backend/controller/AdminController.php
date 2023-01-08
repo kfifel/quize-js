@@ -23,6 +23,11 @@ class AdminController
     {
         echo $this->admin->searchQuestion($_GET['search']);
     }
+
+    public function deleteQuestion()
+    {
+        echo $this->admin->deleteQuestion($_GET['question-delete']);
+    }
 }
 
 $adminController = new AdminController();
@@ -30,3 +35,4 @@ $adminController = new AdminController();
 if(isset($_GET['questions']))    $adminController->getAllQuestions();
 if(isset($_GET['save_question'])) $adminController->createQuestion();
 if(isset($_GET['search'])) $adminController->searchQuestion();
+if(isset($_GET['question-delete'])) $adminController->deleteQuestion();

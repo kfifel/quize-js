@@ -48,9 +48,10 @@ class Admin
 
     }
 
-    public function deleteQuestion(): bool
+    public function deleteQuestion($id): bool
     {
-
+        if(Database::connect()->query("delete from quiz.choice where  id_question = $id"))
+            return  (bool) Database::connect()->query("delete from quiz.question where id = $id");
         return false;
     }
 
