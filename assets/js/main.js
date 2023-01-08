@@ -6,18 +6,18 @@ const stepperItem2    = document.querySelector("#stepper-item-2")
 const stepperItem3    = document.querySelector("#stepper-item-3")
 const stepperLine1    = document.querySelector("#stepper-line-1")
 const stepperLine2    = document.querySelector("#stepper-line-2")
+
 let isConnect = false;
 let username;
 let index;
 let score;
 let size_progress_bar = 0;
-
 let questions = [];
 let size = 0;
-
 let duration = 0;
 let startTime = 0;
 let endTime = 0;
+
 //   ------------------------------- Getting data -----------------------------------------------------
 
 let ajax = new XMLHttpRequest()
@@ -28,24 +28,9 @@ ajax.onreadystatechange = function() {
         questions.sort(()=> Math.random() - 0.5 );
     }
 };
-//ajax.open("GET", 'assets/js/typescript/data/Question.json', true);
 ajax.open("GET", 'http://localhost:8080/quiz-backend/controller/UserController.php?questions', true);
 ajax.send();
 
-
-
-//   -------------------------   components  --------------------------------------------------------------
-/*
-$.ajax({
-    type: "POST",
-    url: 'http://localhost:8080/admin.php',
-    dataType: 'json',
-    success: function(data) {
-        console.log(data); // Outputs "value"
-    }
-});
-
-*/
 verifyUser();
 function verifyUser(){
     if(isConnect)
@@ -53,7 +38,6 @@ function verifyUser(){
                         <button class="start" onclick="Start()">  Let's start  </button>
 `;
 }
-
 
 
 function rankedComponent(){
@@ -149,7 +133,6 @@ function dashboardComponent(){
     verifyUser();
 }
 
-
 function countDownToStart(){
     document.querySelector(".bg-color2")
     for (let i = 5; i >= 0; i--) {
@@ -204,7 +187,7 @@ function Start(){
         `;
         countDownToStart();
     }else{
-        document.getElementById('alert-danger').innerText = "Please username is required";
+        document.getElementById('alert-danger').innerText = "username or password is incorrect";
     }
 }
 
@@ -300,7 +283,7 @@ function countDownTimeQuestion() {
 
 function updateProgressBar(){
     size_progress_bar += 100/size;
-    for (let i = size_progress_bar - 100/size+0.5 , j = 0; i <= size_progress_bar; i++, j++) {
+    for (let i = size_progress_bar - 100/size , j = 0; i <= size_progress_bar; i++, j++) {
         setTimeout(function() {
             progressCounter.innerText = `${i}%`
         }, 50 * j );
